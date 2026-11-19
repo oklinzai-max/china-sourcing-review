@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supplier Comparison Spreadsheet v1.1 · 修订说明与测试报告</title>
+<style>
+  body { margin:0; font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif; color:#24303f; background:#fff; line-height:1.7; }
+  .wrap { max-width:900px; margin:0 auto; padding:44px 24px 90px; }
+  h1 { font-size:27px; color:#0b2545; margin:0 0 10px; letter-spacing:-.3px; }
+  .lead { color:#4b5d75; margin:0 0 8px; }
+  .meta { color:#8194ab; font-size:13px; margin:0 0 34px; }
+  h2 { font-size:16px; color:#0b2545; margin:0 0 8px; }
+  section { border-top:1px solid #dbe3ec; padding-top:24px; margin-bottom:30px; }
+  .what { font-weight:700; color:#b4441a; margin:0 0 6px; font-size:14px; }
+  .why, .extra { color:#4b5d75; font-size:13.5px; margin:0 0 12px; }
+  .extra { background:#f7f9fc; border:1px solid #e6ecf3; border-radius:6px; padding:10px 14px; }
+  table { border-collapse:collapse; width:100%; font-size:12.5px; margin:10px 0 4px; }
+  th { background:#0b2545; color:#fff; font-size:12px; text-align:left; padding:7px 10px; }
+  td { border-bottom:1px solid #e6ecf3; padding:7px 10px; vertical-align:top; }
+  tr:nth-child(even) td { background:#f9fbfd; }
+  table.cmp td.mono { font-size:11px; word-break:break-all; color:#3c4a5c; }
+  .tag { font-weight:700; font-size:11px; text-align:center; border-radius:4px; }
+  .tag.old { color:#8194ab; }
+  .tag.new { color:#1f7a4d; }
+  .num { text-align:right; width:44px; color:#8194ab; }
+  .mono { font-family:Consolas,"Courier New",monospace; }
+  .mut { color:#6b7c93; }
+  .ok { color:#1f7a4d; font-weight:700; }
+  .bad { color:#c0392b; font-weight:700; }
+  .summary { background:#f7f9fc; border:1px solid #dbe3ec; border-radius:8px; padding:16px 20px; margin-bottom:30px; }
+  .summary b { color:#0b2545; }
+  .kv { display:grid; grid-template-columns:150px 1fr; gap:6px 14px; font-size:13.5px; }
+  .kv dt { color:#8194ab; }
+  .kv dd { margin:0; }
+  .warn { border-left:3px solid #d9541e; background:#fdf6f2; padding:14px 18px; margin:26px 0; font-size:13.5px; }
+  .warn b { color:#b4441a; }
+  code { background:#eef2f8; padding:1px 5px; border-radius:3px; font-size:12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Supplier Comparison Spreadsheet v1.1</h1>
+  <p class="lead">修订说明与测试报告 · 2026-11-19</p>
+  <p class="meta">原始 v1.0 与备份均未改动；本页所有数字与输出取自实际文件。</p>
+
+  <div class="summary">
+    <dl class="kv">
+      <dt>修订范围</dt><dd>Quotation Comparison · Sample Tracking · Supplier Evaluation · Supplier Comparison</dd>
+      <dt>未改动的部分</dt><dd>7 个工作表的顺序、Sheet ID、原有公式与下拉选项、条件格式、Lists 清单、Getting Started 说明</dd>
+      <dt>公式数量</dt><dd>v1.0 <b>411</b> → v1.1 <b>412</b>（新增 B4 权重警告公式，其余为原地替换）</dd>
+      <dt>条件格式</dt><dd><b>12</b> 条规则 / 8 个区域（数量未变，Sample Tracking 的两个区域已随列位移重映射）</dd>
+      <dt>数据验证</dt><dd><b>33</b> 条（v1.0 为 32，新增预计到货日的日期验证）</dd>
+      <dt>测试</dt><dd><b>15/15</b> 项通过</dd>
+      <dt>版本号</dt><dd>工作簿内已更新为 v1.1 · 19 November 2026</dd>
+    </dl>
+  </div>
+
+  <section>
+  <h2>1. Quotation Comparison</h2>
+  <p class="what">Comparable? 改名为 Core Terms Match，并新增 Additional Checks 列</p>
+  <p class="why"><b>为什么改：</b>四项一致只是"核心条款一致"，不代表两份报价整体可比。原名容易被误读成"全部条件都可比"。</p>
+  <table class="cmp">
+    <thead><tr><th style="width:52px">版本</th><th>公式 / 内容</th></tr></thead>
+    <tbody>
+      <tr><td class="tag old">v1.0</td><td class="mono">=IF(COUNTA($C$5,$E$5,$G$5,$I$5)&lt;4,"Set the reference block above",IF(COUNTA($D8,$E8,$F8,$G8)=0,"",IF(AND($D8=$C$5,$E8=$E$5,$F8=$G$5,$G8=$I$5),"Comparable","Not comparable — check specification, quantity, currency or Incoterm")))</td></tr>
+      <tr><td class="tag new">v1.1</td><td class="mono">=IF(COUNTA($C$5,$E$5,$G$5,$I$5)&lt;4,"Set the reference block above",IF(COUNTA($D8,$E8,$F8,$G8)=0,"",IF(AND($D8=$C$5,$E8=$E$5,$F8=$G$5,$G8=$I$5),"Match","No match — check specification, quantity, currency or Incoterm")))</td></tr>
+    </tbody>
+  </table>
+  <p class="extra">R 列标题写明还要人工核对：packaging, payment terms, destination / delivery place, taxes, quote validity, extra charges。</p>
+</section>
+<section>
+  <h2>2. Sample Tracking</h2>
+  <p class="what">新增 Expected Arrival Date，逾期改为按预计到货日判断</p>
+  <p class="why"><b>为什么改：</b>14 天对空运、海运、快递完全不适用；同一条规则套在所有人身上，等于没有判断。</p>
+  <table class="cmp">
+    <thead><tr><th style="width:52px">版本</th><th>公式 / 内容</th></tr></thead>
+    <tbody>
+      <tr><td class="tag old">v1.0</td><td class="mono">=IF(OR($F5="",$H5&lt;&gt;""),"",IF($F5+14&lt;TODAY(),"No arrival after 14 days — chase it",""))</td></tr>
+      <tr><td class="tag new">v1.1</td><td class="mono">=IF(OR($F5="",$I5=""),"",IF($H5&lt;&gt;"",IF($H5&lt;$I5,"Arrived early",IF($H5=$I5,"Arrived on time","Arrived late")),IF(TODAY()&gt;$I5,"Overdue — not arrived","In transit")))</td></tr>
+    </tbody>
+  </table>
+  <p class="extra">Days in transit 仍为 =H-F（发运日到到货日），未受影响。新列插入在 Arrival date 之后，数据验证与条件格式已同步重映射。</p>
+</section>
+<section>
+  <h2>3. Supplier Evaluation</h2>
+  <p class="what">八项未填齐显示 Incomplete；权重不等于 100% 时报警并拒绝出分</p>
+  <p class="why"><b>为什么改：</b>空分当 0 参与加权，会把"还没问"变成"很差"，直接压低总分并影响排序。</p>
+  <table class="cmp">
+    <thead><tr><th style="width:52px">版本</th><th>公式 / 内容</th></tr></thead>
+    <tbody>
+      <tr><td class="tag old">v1.0</td><td class="mono">=IFERROR(IF(SUMPRODUCT($C$4:$J$4)=0,"",IF(COUNTA(C6:J6)=0,"",SUMPRODUCT(C6:J6,$C$4:$J$4)/SUMPRODUCT($C$4:$J$4))),"")</td></tr>
+      <tr><td class="tag new">v1.1</td><td class="mono">=IF(COUNTA(C6:J6)=0,"",IF(COUNTA(C6:J6)&lt;8,"Incomplete — "&amp;COUNTA(C6:J6)&amp;"/8 scored",IF($K$4&lt;&gt;100,"Weights ≠ 100% — cannot score",SUMPRODUCT(C6:J6,$C$4:$J$4)/100)))</td></tr>
+    </tbody>
+  </table>
+  <p class="extra">B4 由静态文字改为公式：=IF($K$4=100,"Weights total 100%","Warning: weights total "&amp;$K$4&amp;"% — must equal 100%")，权重一动就会提示。</p>
+</section>
+<section>
+  <h2>4. Supplier Comparison</h2>
+  <p class="what">Landed cost per unit 改为 Estimated Landed Cost per Unit，并加币种与重复计入说明</p>
+  <p class="why"><b>为什么改：</b>这个数是估算，不是供应商报的到岸价；不同币种直接相加、或把已含在报价里的费用再加一次，都会算出错的成本。</p>
+  <table class="cmp">
+    <thead><tr><th style="width:52px">版本</th><th>公式 / 内容</th></tr></thead>
+    <tbody>
+      <tr><td class="tag old">v1.0</td><td class="mono">表头：Landed cost per unit</td></tr>
+      <tr><td class="tag new">v1.1</td><td class="mono">表头：Estimated Landed Cost per Unit；公式未变：=IFERROR(IF(OR($M5="",$N5=""),"",$N5+($AB5+$AC5)/$M5),"")</td></tr>
+    </tbody>
+  </table>
+  <p class="extra">A2 说明追加：单价 / 运费 / 税费必须同币种；若某项已含在报价里，不要再加到运费或税费列。</p>
+</section>
+
+  <section>
+    <h2>测试结果（在表格引擎内实际执行）</h2>
+    <p class="why">每个用例都是写入输入、读回引擎算出的结果，再与预期比对；测试在独立副本上跑，交付文件不参与。</p>
+    <table>
+      <thead><tr><th class="num">#</th><th>用例</th><th>实际结果</th><th>预期</th><th style="width:64px">判定</th></tr></thead>
+      <tbody><tr>
+    <td class="num">1</td>
+    <td>八项全空 -&gt; 不产生分数</td>
+    <td class="mono">（空白）</td>
+    <td class="mono mut">（空白）</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">2</td>
+    <td>3/8 -&gt; Incomplete</td>
+    <td class="mono">Incomplete — 3/8 scored</td>
+    <td class="mono mut">Incomplete — 3/8 scored</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">3</td>
+    <td>8/8 -&gt; 加权分 4.15</td>
+    <td class="mono">4.15</td>
+    <td class="mono mut">4.15</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">4</td>
+    <td>权重警告文字</td>
+    <td class="mono">Warning: weights total 110% — must equal 100%</td>
+    <td class="mono mut">Warning: weights total 110% — must equal 100%</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">5</td>
+    <td>权重不等于 100 -&gt; 拒绝评分</td>
+    <td class="mono">Weights ≠ 100% — cannot score</td>
+    <td class="mono mut">Weights ≠ 100% — cannot score</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">6</td>
+    <td>权重恢复 -&gt; 出分恢复</td>
+    <td class="mono">4.15</td>
+    <td class="mono mut">4.15</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">7</td>
+    <td>S-001 提前 1 天 -&gt; Arrived early</td>
+    <td class="mono">Arrived early</td>
+    <td class="mono mut">Arrived early</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">8</td>
+    <td>S-001 在途天数仍为 6</td>
+    <td class="mono">6</td>
+    <td class="mono mut">6</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">9</td>
+    <td>S-002 超过预计日期未到 -&gt; Overdue</td>
+    <td class="mono">Overdue — not arrived</td>
+    <td class="mono mut">Overdue — not arrived</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">10</td>
+    <td>清掉发运日 -&gt; 不判断</td>
+    <td class="mono">（空白）</td>
+    <td class="mono mut">（空白）</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">11</td>
+    <td>Q-01 四项一致 -&gt; Match</td>
+    <td class="mono">Match</td>
+    <td class="mono mut">Match</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">12</td>
+    <td>Incoterm 改 EXW -&gt; No match</td>
+    <td class="mono">No match — check specification, quantity, currency or Incoterm</td>
+    <td class="mono mut">No match — check specification, quantity, currency or Incoterm</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">13</td>
+    <td>改回 FOB -&gt; Match</td>
+    <td class="mono">Match</td>
+    <td class="mono mut">Match</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">14</td>
+    <td>清空必填项 -&gt; 落地成本为空</td>
+    <td class="mono">（空白）</td>
+    <td class="mono mut">（空白）</td>
+    <td class="ok">通过</td>
+  </tr>
+<tr>
+    <td class="num">15</td>
+    <td>清空供应商编号 -&gt; 得分列为空</td>
+    <td class="mono">（空白）</td>
+    <td class="mono mut">（空白）</td>
+    <td class="ok">通过</td>
+  </tr></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>必须说清楚的：没有在 Excel 或 WPS 里实测</h2>
+    <div class="warn">
+      <p><b>本轮全部验证都在本机表格引擎里完成</b>（<code>@tencent/tencent-docs-ai-engine</code> 的 <code>editor_sdk</code>）：公式由引擎真实计算，条件格式与数据验证从文件 XML 里读回核对。</p>
+      <p><b>但没有在 Microsoft Excel 或 WPS 中打开验证过。</b>本机未安装 Excel；WPS 已安装，但沙箱禁止 COM 实例化（<code>Ket.Application</code>），无法程序化驱动。因此以下情况属于"未验证"：Excel 对公式的兼容性、条件格式在 WPS 里的配色、插入列后列宽与打印区域的观感。</p>
+      <p>用到的函数只有 <code>IF</code> / <code>COUNTA</code> / <code>SUMPRODUCT</code> / <code>IFERROR</code> / <code>TODAY</code> / <code>AND</code>，均为 Excel 2007 起可用；未使用动态数组、<code>LAMBDA</code>、VBA 或宏。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>文件清单</h2>
+    <table>
+      <thead><tr><th>文件</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">supplier-comparison-spreadsheet.xlsx</td><td>v1.1 交付版（本页所述版本）</td></tr>
+        <tr><td class="mono">supplier-comparison-spreadsheet-v1.0.xlsx</td><td>v1.0 原件，逐字节未改，供对照</td></tr>
+      </tbody>
+    </table>
+    <p class="extra">工作簿内容逐格查看：<a href="workbook.html">workbook.html</a>（v1.1 的 7 张表、412 个公式与计算结果）。</p>
+  </section>
+</div>
+</body>
+</html>
