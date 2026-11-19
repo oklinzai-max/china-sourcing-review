@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChinaSourcing 第三阶段报告 · Email 订阅与资料交付</title>
+<style>
+  :root { --ink:#0b2545; --body:#24303f; --mut:#6b7c93; --accent:#d9541e; --line:#dbe3ec; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#fff; color:var(--body); line-height:1.75;
+         font-family:"Microsoft YaHei","PingFang SC",system-ui,-apple-system,sans-serif; }
+  .wrap { max-width:900px; margin:0 auto; padding:48px 22px 96px; }
+  h1 { font-size:27px; color:var(--ink); margin:0 0 8px; letter-spacing:-.3px; }
+  .lead { color:#4b5d75; margin:0 0 6px; font-size:15px; }
+  .meta { color:#8194ab; font-size:12.5px; margin:0 0 8px; }
+  h2 { font-size:17px; color:var(--ink); margin:0 0 10px; }
+  h3 { font-size:14px; color:var(--ink); margin:22px 0 8px; }
+  section { border-top:1px solid var(--line); padding-top:26px; margin-top:34px; }
+  section:first-of-type { border-top:0; }
+  p { margin:0 0 12px; font-size:14px; }
+  .mut { color:var(--mut); }
+  .small { font-size:13px; }
+  table { border-collapse:collapse; width:100%; font-size:13px; margin:12px 0 6px; }
+  th { background:var(--ink); color:#fff; font-size:12px; text-align:left; padding:8px 10px; font-weight:600; }
+  td { border-bottom:1px solid #e6ecf3; padding:8px 10px; vertical-align:top; }
+  tr:nth-child(even) td { background:#f9fbfd; }
+  .c { text-align:center; }
+  .num { text-align:right; width:42px; color:#8194ab; }
+  .mono { font-family:Consolas,"Courier New",monospace; font-size:11.5px; }
+  .ok { color:#1f7a4d; font-weight:700; }
+  .bad { color:#c0392b; font-weight:700; }
+  .good { color:#1f7a4d; font-weight:700; }
+  .badge { display:inline-block; padding:1px 8px; border-radius:10px; font-size:11.5px; font-weight:700; white-space:nowrap; }
+  .summary { background:#f7f9fc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:18px 0 8px; }
+  .summary dl { display:grid; grid-template-columns:130px 1fr; gap:6px 14px; margin:0; font-size:13.5px; }
+  .summary dt { color:#8194ab; }
+  .summary dd { margin:0; }
+  figure { margin:20px 0 26px; }
+  figure img { width:100%; border:1px solid var(--line); border-radius:8px; display:block; }
+  figcaption { font-size:12.5px; color:#4b5d75; margin-top:9px; line-height:1.7; }
+  figcaption b { color:var(--ink); }
+  .warn { border-left:3px solid var(--accent); background:#fdf6f2; padding:14px 18px; margin:20px 0; font-size:13.5px; }
+  .warn b { color:#b4441a; }
+  .note { background:#f7f9fc; border:1px solid var(--line); border-radius:6px; padding:12px 16px; font-size:13px; margin:14px 0; }
+  pre { background:#0b2545; color:#e8eef6; padding:13px 16px; border-radius:6px; overflow-x:auto;
+        font-size:12px; line-height:1.65; font-family:Consolas,"Courier New",monospace; }
+  code { background:#eef2f8; padding:1px 5px; border-radius:3px; font-size:12.5px;
+         font-family:Consolas,"Courier New",monospace; }
+  ul, ol { margin:0 0 12px; padding-left:22px; font-size:14px; }
+  li { margin-bottom:6px; }
+  .mail { border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:16px 0 22px; }
+  .mail .hd { background:#f2f6fb; padding:10px 16px; font-size:12.5px; color:var(--ink); font-weight:700;
+              border-bottom:1px solid var(--line); }
+  .mail .bd { padding:14px 16px; font-size:13.5px; white-space:pre-wrap; }
+  a { color:#0b4f9c; }
+  @media print {
+    body { font-size:11pt; }
+    section { break-inside:avoid; }
+    figure { break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>ChinaSourcing 第三阶段：Email 订阅与自动资料交付</h1>
+  <p class="lead">交付报告 · 供外部审查</p>
+  <p class="meta">
+    生成时的 HEAD：<code>c09dc50</code>（本页自身在之后单独提交） ·
+    本地模拟测试 16/16（2026/11/19 19:22:52） ·
+    全站回归 73/73（2026/11/19 19:23:56）
+  </p>
+
+  <div class="summary">
+    <dl>
+      <dt>本阶段目标</dt><dd>访客填邮箱 → 确认 → 自动收到欢迎邮件与两份资料 → 后续只收本人同意的资讯</dd>
+      <dt>实际进度</dt><dd><b>代码与文案全部就绪；服务商账户与域名未就位，因此没有一封真实邮件发出过</b></dd>
+      <dt>服务商</dt><dd>Brevo（原首选 MailerLite 因免费版不能自定义确认邮件而更换，对比见第三节）</dd>
+      <dt>技术形态</dt><dd>纯静态站 + 服务商官方托管表单；站内不发请求、不存在任何 API Key</dd>
+      <dt>真实邮件测试</dt><dd class="bad">未做</dd>
+      <dt>本站改动</dt><dd>3 个页面/组件 + 配置文件，导航、URL、首页布局顺序均未变</dd>
+    </dl>
+  </div>
+
+  <div class="warn">
+    <p><b>请先看这一句：</b>本阶段所有"通过"的测试都是<b>本地模拟</b>——在没有连接任何邮件服务的前提下，验证表单的校验与提示是否诚实准确。它<b>不能</b>证明真实订阅、真实确认邮件、真实退订可用，那些需要 Brevo 账户与正式域名，目前都不具备。</p>
+    <p style="margin-bottom:0">报告里凡是涉及"真实投递"的地方一律标为未做，没有把计划当结果。</p>
+  </div>
+
+  <section>
+    <h2>一、状态总表</h2>
+    <table>
+      <thead><tr><th style="width:200px">项目</th><th style="width:150px">状态</th><th>依据</th></tr></thead>
+      <tbody><tr><td>前置检查、Git 检查点</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">已实际执行，结果见下</td></tr>
+<tr><td>订阅组件两态改造</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">16/16 项本地模拟通过</td></tr>
+<tr><td>首页 / 资料页 / 工具页三个入口</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">截图与 DOM 检查均确认</td></tr>
+<tr><td>全站回归</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">73/73 项通过，44 个页面全部 200</td></tr>
+<tr><td>两封邮件文案（全稿）</td><td><span class="badge" style="color:#8a5a00;background:#fdf8ec">已完成 · 未验证</span></td><td class="mut">已写好，尚未在服务商后台配置</td></tr>
+<tr><td>Brevo 接入指南、DNS 记录清单</td><td><span class="badge" style="color:#8a5a00;background:#fdf8ec">已完成 · 未验证</span></td><td class="mut">已写好，尚未执行</td></tr>
+<tr><td>Brevo 账户与托管表单</td><td><span class="badge" style="color:#9c3d10;background:#fdf2ec">等待授权</span></td><td class="mut">需要你注册并创建</td></tr>
+<tr><td>正式域名</td><td><span class="badge" style="color:#9c3d10;background:#fdf2ec">等待授权</span></td><td class="mut">仍是 chinasourcing.example 占位</td></tr>
+<tr><td>Double Opt-in 实际开启</td><td><span class="badge" style="color:#9c3d10;background:#fdf2ec">等待授权</span></td><td class="mut">需要账户内操作</td></tr>
+<tr><td>真实投递测试（9 项）</td><td><span class="badge" style="color:#6b7c93;background:#f2f5f9">尚未开发</span></td><td class="mut">未做，无账户无法做</td></tr>
+<tr><td>隐私政策更新</td><td><span class="badge" style="color:#6b7c93;background:#f2f5f9">尚未开发</span></td><td class="mut">刻意未改：现有文案此刻仍然成立</td></tr></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>二、开工前的检查（只读，未改任何文件）</h2>
+    <table>
+      <thead><tr><th style="width:170px">检查项</th><th>实测结果</th></tr></thead>
+      <tbody>
+        <tr><td>分支 / 工作区</td><td><code>master</code>，工作区干净（无未提交修改）</td></tr>
+        <tr><td>检查点</td><td>已打标签 <code>checkpoint-before-stage3</code> → <code>0149ab1</code>；本阶段任何改动都可整段回退</td></tr>
+        <tr><td>技术栈</td><td>Astro 5.18.2 + Tailwind 4.1.14，静态构建，<code>dist/</code> 已忽略；构建产出 44 个页面</td></tr>
+        <tr><td>第二阶段结论</td><td>v1.1 工作簿已验收：原件与备份逐字节未改，交付版 37.3 KiB</td></tr>
+        <tr><td>原有订阅组件</td><td>存在，但<b>只做前端校验、不发任何请求</b>，提交后明说"未连接邮件服务"——没有伪造成功态，因此可以直接沿用</td></tr>
+        <tr><td>原有入口位置</td><td>仅工具页一处，不是每页弹窗</td></tr>
+        <tr><td>站点是否泄露资料地址</td><td><code>src/</code> 内没有任何指向两份资料的链接</td></tr>
+        <tr><td>域名</td><td class="bad"><code>https://chinasourcing.example</code> ——还是占位符</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>三、为什么从 MailerLite 换成 Brevo</h2>
+    <p>你的要求里指定了邮件 1 的主题 <code>Confirm your ChinaSourcing subscription</code> 与正文内容。核实官方文档后发现 MailerLite 免费版<b>不能编辑 Double Opt-in 确认邮件</b>（其帮助中心写明该功能仅付费套餐可用），也就是免费版发不出你要的这封信。这属于"功能不符合需求"，按约定先报告而不是擅自切换；经你确认后改用 Brevo。</p>
+    <table>
+      <thead><tr><th style="width:150px">对比项</th><th>MailerLite 免费版</th><th>Brevo 免费版</th></tr></thead>
+      <tbody><tr><td><b>发信额度</b></td><td>12,000 封/月（2026-06 起下调）</td><td class="">300 封/天，约 9,000 封/月</td></tr>
+<tr><td><b>订阅者上限</b></td><td>250 人（免费版）</td><td class="">10 万联系人上限，按发信量计费</td></tr>
+<tr><td><b>Double Opt-in</b></td><td>新建表单默认开启</td><td class="">可选开启</td></tr>
+<tr><td><b>确认前是否发资料</b></td><td>未确认只收确认信</td><td class="">未点击不进列表</td></tr>
+<tr><td><b>自定义确认邮件</b></td><td>仅付费套餐</td><td class="">支持自定义模板 + 确认链接</td></tr>
+<tr><td><b>营销自动化</b></td><td>3 条，每条 5 步</td><td class="">包含，上限 2,000 联系人</td></tr>
+<tr><td><b>品牌水印</b></td><td>无</td><td class="">免费版带 Brevo 标识</td></tr>
+<tr><td><b>结论</b></td><td>缺"自定义确认邮件"这一项</td><td class="good">满足全部需求，改用此方案</td></tr></tbody>
+    </table>
+    <p class="small mut">Brevo 的两个已知代价：免费版邮件带品牌水印；第三方测得的 Gmail 进箱率约 72%（共享 IP 所致，换任何一家入门套餐都类似，只能靠域名认证与预热改善）。</p>
+    <p class="note"><b>仍然没有切换技术路线：</b>两家都是官方托管表单 + 自动化，本站不接后端、不存数据、不放密钥。换成 Brevo 只影响你在后台点哪里，不影响站点结构。</p>
+  </section>
+
+  <section>
+    <h2>四、改了什么（附截图）</h2>
+    <table>
+      <thead><tr><th style="width:290px">文件</th><th>改动</th><th class="c" style="width:56px">类型</th></tr></thead>
+      <tbody><tr><td class="mono">src/config/site.ts</td><td>新增 newsletter 配置块：provider、hostedUrl</td><td class="c mut">改</td></tr>
+<tr><td class="mono">src/components/NewsletterForm.astro</td><td>重写为两态组件：未配置 / 已配置</td><td class="c mut">改</td></tr>
+<tr><td class="mono">src/pages/index.astro</td><td>首页加入订阅区块（Free Tools 与 Trust 之间）</td><td class="c mut">改</td></tr>
+<tr><td class="mono">src/pages/free-resources.astro</td><td>加入订阅区块；修正"资料尚未提供"的过时文案</td><td class="c mut">改</td></tr>
+<tr><td class="mono">scripts/qa-newsletter.mjs</td><td>新增：16 项本地模拟测试</td><td class="c mut">新增</td></tr>
+<tr><td class="mono">scripts/report/stage3-shots.mjs</td><td>新增：截图脚本（本文四张图由它生成）</td><td class="c mut">新增</td></tr>
+<tr><td class="mono">scripts/report/build-stage3-report.mjs</td><td>新增：本页的生成脚本</td><td class="c mut">新增</td></tr>
+<tr><td class="mono">research/第三阶段-前置检查.md</td><td>前置检查记录与服务商对比</td><td class="c mut">新增</td></tr>
+<tr><td class="mono">research/第三阶段-Brevo接入指南.md</td><td>你的操作手册、两封邮件全文、DNS 清单</td><td class="c mut">新增</td></tr>
+<tr><td class="mono">package.json</td><td>新增 check:newsletter 等命令</td><td class="c mut">改</td></tr></tbody>
+    </table>
+
+    <figure>
+  <img src="img/stage3/01-home-desktop.png" alt="首页订阅区块（1440px）">
+  <figcaption><b>首页订阅区块（1440px）</b><br>左栏是文案，右栏是卡片。卡片里依次为：FREE TOOLKIT 标签、标题 Get Your Free China Sourcing Toolkit、一段说明、两份资料的名称与各自一句用途、邮箱输入框、同意勾选框（默认未勾选）、Get the Free Toolkit 按钮，底部一行 No spam. Unsubscribe anytime. Read the privacy policy.</figcaption>
+</figure>
+<figure>
+  <img src="img/stage3/02-home-after-submit.png" alt="提交后的真实提示">
+  <figcaption><b>提交后的真实提示</b><br>填入邮箱并勾选同意、点击按钮之后，表单下方出现这段话：Thanks — but this form is not connected to an email service yet, so nothing was sent or stored. Every template on the toolkit page is still free to download without an address. 同时邮箱与勾选被清空。注意这里没有出现 check your inbox / you are subscribed 之类的成功提示。</figcaption>
+</figure>
+<figure>
+  <img src="img/stage3/03-resources-desktop.png" alt="Free Resources 页的第二个入口">
+  <figcaption><b>Free Resources 页的第二个入口</b><br>同一组件的 compact 版本，放在页面底部：左边说明"两份资料已完成，但投递通道还没接通"，右边是表单。原有三份免费资料没有任何改动，也不需要邮箱。</figcaption>
+</figure>
+<figure>
+  <img src="img/stage3/04-home-mobile.png" alt="手机端 390px">
+  <figcaption><b>手机端 390px</b><br>单列堆叠：文案在上、卡片在下，勾选框与按钮均为整宽可点区域，没有横向滚动。</figcaption>
+</figure>
+
+    <p class="note">四张图都是脚本从 <code>npm run preview</code> 起的真实页面上截下来的，不是设计稿。第二张是脚本真的填了邮箱、勾了同意、点了按钮之后拍的，所以图上那句提示就是访客会看到的那句。</p>
+  </section>
+
+  <section>
+    <h2>五、订阅流程与"两态"设计</h2>
+    <p>站点没有后端、没有数据库，也不允许在前端放密钥，所以订阅动作<b>不能</b>在站内完成。组件因此只有两种状态，由 <code>site.ts</code> 里一个字段控制：</p>
+    <table>
+      <thead><tr><th style="width:150px">状态</th><th>行为</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>未配置</b><br><span class="mut small">当前状态</span></td>
+          <td>本地做格式校验与同意勾选校验，通过后明确告诉访客"没有连接邮件服务，什么都没有发送、也没有存储"。<b>不出现任何成功提示，不冒充已订阅。</b></td>
+        </tr>
+        <tr>
+          <td><b>已配置</b></td>
+          <td>取得 Brevo 托管表单地址后填进 <code>hostedUrl</code>，按钮改为跳转到该表单页。邮箱、同意勾选、Double Opt-in、确认邮件全部在 Brevo 侧完成，本站只负责把人送过去。<b>改一行配置即可上线，不需要改组件逻辑。</b></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>为什么不自己写一个 <code>POST /subscribe</code>：那需要一个能保管密钥的服务端。纯静态站做这件事只有两条路——把密钥写进前端（绝不允许），或者加后端（超出本阶段范围，且会带来费用与运维）。托管表单是唯一既真实又不需要后端的方式。</p>
+    <p class="small mut">注：确认前不给资料这一条，靠的是 Brevo 的机制（未确认的订阅者不在列表里，自动化不会触发），不是靠本站判断——本站没有能力判断，所以也不声称。</p>
+  </section>
+
+  <section>
+    <h2>六、两封自动邮件（全文）</h2>
+    <p>以下文案已写好，可以直接粘进 Brevo。目前<b>尚未</b>在后台创建，因此状态是"已完成 · 未验证"。</p>
+
+    <h3>邮件 1 · 订阅确认（Double Opt-in）</h3>
+    <div class="mail">
+      <div class="hd">Subject：Confirm your ChinaSourcing subscription</div>
+      <div class="bd">Thanks for signing up for the ChinaSourcing toolkit.
+
+One step left: please confirm your email address by clicking the button below. Until you do, we cannot send you anything — including the two documents.
+
+[ Confirm my subscription ]
+
+If you did not sign up, you can ignore this email and nothing further will happen. No address is added to our list without this confirmation.
+
+ChinaSourcing — Find it. Source it. Ship it.</div>
+    </div>
+    <p class="note"><b>配置时必须注意：</b>确认按钮要用 Brevo 的 <b>Double opt-in link</b> 链接类型。若误用普通链接，点击不会被记录为确认，后续自动化不会触发，用户会以为订阅成功了。</p>
+
+    <h3>邮件 2 · 欢迎邮件与资料交付</h3>
+    <div class="mail">
+      <div class="hd">Subject：Your China Sourcing Toolkit is Ready</div>
+      <div class="bd">Welcome — and thanks for confirming.
+
+You are getting two documents we built from our own sourcing work, not something repackaged from a template:
+
+1. Supplier Comparison Spreadsheet (.xlsx)
+Compare supplier quotations, score suppliers on eight criteria, and track samples in one workbook.
+
+2. Common Chinese-English Sourcing Terms (.pdf)
+The vocabulary that shows up on quotations and in WeChat, so you can read a quote and hold a basic conversation with a supplier.
+
+[ Download the spreadsheet ]   [ Download the glossary ]
+
+What else is on the site:
+
+· Canton Fair — what to prepare before you go, and what the phases actually involve
+· Yiwu Market — how the market districts are organised and how to work them in a day
+· China Sourcing — supplier vetting, quotations, samples and quality checks
+· Travel Toolkit — visas, payments, connectivity and what to pack
+
+We send occasional sourcing updates. Every email has a one-click unsubscribe, and we do not sell or share your address.
+
+ChinaSourcing — Find it. Source it. Ship it.</div>
+    </div>
+    <p class="small mut">两份资料的说明文字只写了它们实际能做的事（比价、评分、跟踪样品 / 术语与基本沟通），没有承诺"提升利润""确保通过验厂"这类无法兑现的效果。</p>
+  </section>
+
+  <section>
+    <h2>七、资料怎么交付，以及保护边界在哪里</h2>
+    <p>计划的做法：在 Brevo 邮件编辑器里用 Insert File 上传两份文件，由 Brevo 托管，链接只出现在邮件正文中，不出现在网站页面上。</p>
+    <div class="warn">
+      <p><b>必须说清楚的三件事：</b></p>
+      <ol style="margin-bottom:0">
+        <li><b>这不是会员鉴权。</b>没有登录、没有身份校验、没有限时签名链接。邮件里的下载地址一旦被转发，拿到的人就能下载。</li>
+        <li><b>因此不会把它称作"安全私密链接"。</b>准确说法是"通过邮件发送的下载地址"。</li>
+        <li><b>而且目前这两份文件仍有公网直链</b>——早前为让审查方读取，放到了 GitHub Pages 上（<code>supplier-comparison-spreadsheet.xlsx</code>、<code>common-chinese-english-sourcing-terms.pdf</code>）。它们没有被站点引用，但任何人拿到地址都能下载，可能被搜索引擎收录。<b>就这两份文件而言，当前保护强度为零。</b></li>
+      </ol>
+    </div>
+    <p>要做到真正的"只有订阅者能下载"，需要其中一种：服务商侧的门禁（部分平台付费版才有）、带时效签名的对象存储链接、或一个能校验会话的后端。这三样都要么花钱要么加后端，按你的要求只报告、不擅自实施。</p>
+    <p class="small">文件体积参考：工作簿 37.3 KiB，术语手册 1.4 MiB（25 页）。两者都在常见邮箱的附件上限内，可以直接附件，也可以走托管链接。</p>
+  </section>
+
+  <section>
+    <h2>八、隐私政策：这次刻意没有改</h2>
+    <p>现有隐私政策写的是"表单尚未连接邮件服务商"。这句话<b>此刻仍然成立</b>——改成一个还没发生的状态（"由 Brevo 处理"）反而会说假话。所以本阶段不动它。</p>
+    <p>接通当天需要一次性补上四项，草稿要点如下：</p>
+    <ul>
+      <li><b>收集什么、为什么</b>：只收集邮箱地址，用于发送两份资料与你同意的采购资讯</li>
+      <li><b>谁在处理</b>：Brevo（法国公司，数据存于欧盟），需写明其为数据处理者，并附其隐私政策链接</li>
+      <li><b>如何退订</b>：每封邮件底部均有退订链接，点击后立即停止后续发送</li>
+      <li><b>如何删除</b>：可通过联系页提出删除请求，删除后不再保留该地址</li>
+    </ul>
+    <p class="note">另外三条边界已经守住：Ask a Question 的提交者不会被自动加进名单（该功能尚未开发）；下载免费资料不会被当作订阅同意（三份免费 PDF 无需邮箱）；不会购买或导入来源不明的邮箱名单。</p>
+  </section>
+
+  <section>
+    <h2>九、域名与送达配置：全部未完成</h2>
+    <p>域名仍是 <code>chinasourcing.example</code>。在真实域名确定之前，下面三项都无法配置，也不应假装配置过：</p>
+    <table>
+      <thead><tr><th style="width:110px">记录</th><th>用途</th><th style="width:110px">状态</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">SPF</td><td>TXT 记录，声明允许哪些服务器代表该域发信</td><td class="c bad">未配置</td></tr>
+        <tr><td class="mono">DKIM</td><td>由 Brevo 生成公私钥，公钥写入 DNS，用于签名校验</td><td class="c bad">未配置</td></tr>
+        <tr><td class="mono">DMARC</td><td>TXT 记录，声明 SPF/DKIM 失败时的处理策略与报告地址</td><td class="c bad">未配置</td></tr>
+      </tbody>
+    </table>
+    <p>发件人信息（名称、发件邮箱、回复邮箱）需在域名认证后确定，建议形如 <code>ChinaSourcing &lt;hello@你的域名&gt;</code>，回复地址与发件地址一致。在域名认证完成前，只能用 Brevo 的共享发件域做流程验证，<b>不适合</b>正式发给海外买家——这类邮件更容易被判为垃圾。</p>
+    <p class="small">DNS 记录的模板与判读方法已写进 <code>research/第三阶段-Brevo接入指南.md</code> 第五节，但标注了"以后台实际显示为准，不要照抄示例值"。你的域名后台我不会去碰。</p>
+  </section>
+
+  <section>
+    <h2>十、测试</h2>
+    <h3>A. 本地模拟（已执行）</h3>
+    <p class="small mut">运行方式：<code>npm run preview</code> 后执行 <code>npm run check:newsletter</code>。脚本在真实浏览器里操作页面，逐项判定。</p>
+    <table>
+      <thead><tr><th class="num">#</th><th>检查项</th><th class="c" style="width:70px">结果</th></tr></thead>
+      <tbody><tr>
+      <td class="num">1</td>
+      <td>订阅区块存在</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">2</td>
+      <td>标题文案</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">3</td>
+      <td>按钮文案</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">4</td>
+      <td>同意勾选默认未勾选</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">5</td>
+      <td>隐私政策链接</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">6</td>
+      <td>两份资料名称都出现</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">7</td>
+      <td>空邮箱 -&gt; 提示无效</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">8</td>
+      <td>格式错误 -&gt; 提示无效</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">9</td>
+      <td>未勾选同意 -&gt; 提示勾选</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">10</td>
+      <td>有效且同意 -&gt; 明确说明未连接</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">11</td>
+      <td>不谎称已订阅</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">12</td>
+      <td>提交后表单已重置</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">13</td>
+      <td>Free Resources 有订阅区块</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">14</td>
+      <td>工具页 有订阅区块</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">15</td>
+      <td>/ 无横向溢出</td>
+      <td class="c ok">通过</td>
+    </tr>
+<tr>
+      <td class="num">16</td>
+      <td>/free-resources/ 无横向溢出</td>
+      <td class="c ok">通过</td>
+    </tr></tbody>
+    </table>
+    <p class="note"><b>16/16 通过</b>（2026/11/19 19:22:52）。这些检查只能证明：表单不会误报成功、空值与未勾选会被拦住、提示文案与事实一致、三个入口都在、手机端不溢出。<b>它们与真实邮件投递无关。</b></p>
+
+    <h3>B. 真实投递（未执行）</h3>
+    <p class="small mut">需要 Brevo 账户 + 域名认证后逐项做。这里列出将来要做的九项，避免届时漏测：</p>
+    <table>
+      <thead><tr><th class="num">#</th><th>测试项</th><th class="c" style="width:70px">状态</th></tr></thead>
+      <tbody><tr><td class="num">1</td><td>提交真实邮箱后是否收到确认信</td><td class="c mut">未做</td></tr>
+<tr><td class="num">2</td><td>确认信里的按钮是否真的记录确认（Brevo 里订阅者状态是否变为已确认）</td><td class="c mut">未做</td></tr>
+<tr><td class="num">3</td><td>确认前是否收不到任何资料邮件</td><td class="c mut">未做</td></tr>
+<tr><td class="num">4</td><td>确认后是否收到欢迎邮件，且邮件内两份文件可下载</td><td class="c mut">未做</td></tr>
+<tr><td class="num">5</td><td>下载到的文件是否与本地原件一致（大小与内容）</td><td class="c mut">未做</td></tr>
+<tr><td class="num">6</td><td>点击退订后是否不再收到后续邮件</td><td class="c mut">未做</td></tr>
+<tr><td class="num">7</td><td>同一邮箱重复订阅的处理（是否重复发信）</td><td class="c mut">未做</td></tr>
+<tr><td class="num">8</td><td>无效邮箱、硬退信的处理</td><td class="c mut">未做</td></tr>
+<tr><td class="num">9</td><td>免费版水印与 Gmail 进箱情况的实测</td><td class="c mut">未做</td></tr></tbody>
+    </table>
+
+    <h3>C. 回归</h3>
+    <p>全站自动化验收 <b>73/73</b> 通过（2026/11/19 19:23:56）：44 个页面状态码、导航菜单、计算器、行程规划器、8 个下载文件、robots 与 sitemap、SEO 标题长度。<b>本阶段没有破坏既有页面。</b></p>
+  </section>
+
+  <section>
+    <h2>十一、还没做完的，与需要你做的</h2>
+    <h3>需要你亲自操作（我无法代做）</h3>
+    <ol>
+      <li>注册 Brevo 免费账户（需邮箱验证，可能要求填写公司信息）</li>
+      <li>建一个列表 + 一个表单，<b>开启 Double Opt-in</b>，只收 Email 字段</li>
+      <li>把邮件 1、邮件 2 粘进去（确认按钮务必选 Double Opt-in link）</li>
+      <li>建一条自动化：加入列表 → 发邮件 2</li>
+      <li>把<b>托管表单地址</b>发我 —— 我改一行配置即上线</li>
+      <li>域名确定后，在你的 DNS 后台添加 SPF / DKIM / DMARC</li>
+    </ol>
+    <h3>之后我继续做的</h3>
+    <ol>
+      <li>填入 <code>hostedUrl</code>，把按钮切到托管表单</li>
+      <li>更新隐私政策（四项，见第八节）</li>
+      <li>陪你跑完真实投递九项测试，并补一份"真实测试"记录</li>
+    </ol>
+    <h3>一个悬而未决的问题</h3>
+    <p>两份资料的 GitHub Pages 直链要不要撤。留着方便审查方随时下载，但它等于把"邮箱换资料"这道门拆了。这件事我按你的指示暂未处理，目前状态是<b>直链存在、保护为零</b>。</p>
+  </section>
+
+  <section>
+    <h2>十二、Git 记录与回滚</h2>
+    <table>
+      <thead><tr><th style="width:90px">提交</th><th>说明</th></tr></thead>
+      <tbody><tr><td class="mono">c09dc50</td><td>feat(stage3): subscription block wired for a hosted provider form</td></tr>
+<tr><td class="mono">b727968</td><td>docs(stage3): pre-flight check and provider comparison</td></tr>
+<tr><td class="mono">0149ab1</td><td>feat(workbook): v1.1 revision of the subscriber spreadsheet</td></tr>
+<tr><td class="mono">1428e9f</td><td>add a web version of the workbook for readers that cannot open xlsx</td></tr>
+<tr><td class="mono">0e69b48</td><td>publish the two subscriber resources with their own links</td></tr>
+<tr><td class="mono">cf4a65c</td><td>docs: publish the report to GitHub Pages and record the proxy trap</td></tr></tbody>
+    </table>
+    <p class="small mut">检查点 <code>checkpoint-before-stage3</code> 指向 <code>0149ab1</code>，即本阶段开工前的状态。</p>
+    <h3>只回滚本阶段的改动</h3>
+    <pre>git checkout checkpoint-before-stage3 -- \
+  src/components/NewsletterForm.astro \
+  src/pages/index.astro \
+  src/pages/free-resources.astro \
+  src/config/site.ts</pre>
+    <h3>整段丢弃（会删除本阶段提交）</h3>
+    <pre>git reset --hard checkpoint-before-stage3</pre>
+    <p class="small">两种方式都不会触碰第二阶段的工作簿与任何资料文件。</p>
+  </section>
+
+  <section>
+    <h2>十三、给审查者的三个问题</h2>
+    <ol>
+      <li><b>托管表单算不算"真实可用的订阅系统"？</b>本站只把人送到 Brevo 的表单页，站内不承接提交。这样做合规、无密钥风险，但转化路径多一跳，且站点无法回显"已订阅"状态。</li>
+      <li><b>确认邮件与欢迎邮件分两封，是否多余？</b>Brevo 的 DOI 确认信已经是第一封，欢迎信是第二封。对海外买家而言这是标准做法，但确实多一次打开。</li>
+      <li><b>资料直链要不要撤？</b>撤掉后审查方需要另找入口（可改用网页版 <code>workbook.html</code>），但订阅门槛才真正成立。</li>
+    </ol>
+  </section>
+
+  <p class="meta" style="margin-top:40px">
+    本页由 <code>scripts/report/build-stage3-report.mjs</code> 生成，数字取自
+    <code>.qa-engine/newsletter-results.json</code>、<code>.qa-engine/site-qa.json</code> 与 git，未手工填写。
+    重新生成：<code>npm run report:stage3</code>。
+  </p>
+  <p class="small" style="margin-top:18px"><a href="index.html">← 返回全部文件目录</a></p>
+
+</div>
+</body>
+</html>
