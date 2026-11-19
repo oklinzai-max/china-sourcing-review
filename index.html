@@ -15,6 +15,8 @@
   a.card:hover { border-color:#0b2545; }
   .t { font-weight:700; color:#0b2545; display:block; margin-bottom:4px; }
   .d { font-size:14px; color:#6b7c93; }
+  .withdrawn { border-style:dashed; background:#fbfcfe; cursor:default; }
+  .withdrawn .t { color:#6b7c93; }
   .note { font-size:13px; color:#8194ab; margin-top:26px; border-top:1px solid #dbe3ec; padding-top:16px; }
 </style>
 </head>
@@ -43,14 +45,13 @@
     <span class="t">工作簿内容（网页版，给读不了 xlsx 的工具用）</span>
     <span class="d">7 张表的全部有内容行 + 每列公式原文与计算结果，浏览器里直接读</span>
   </a>
-  <a class="card" href="supplier-comparison-spreadsheet.xlsx">
-    <span class="t">Supplier Comparison Spreadsheet v1.1（.xlsx）</span>
-    <span class="d">7 个工作表、412 个公式；Core Terms Match / Expected Arrival Date / Incomplete 评分</span>
-  </a>
-  <a class="card" href="common-chinese-english-sourcing-terms.pdf">
-    <span class="t">Common Chinese-English Sourcing Terms（.pdf）</span>
-    <span class="d">7 类 107 个词条 + 40 个整句，25 页</span>
-  </a>
+  <div class="card withdrawn">
+    <span class="t">两份订阅资料（已从公开位置撤下）</span>
+    <span class="d">
+      Supplier Comparison Spreadsheet 与 Common Chinese-English Sourcing Terms 不再在这里提供下载。
+      它们是邮件订阅资料，将通过订阅确认后的邮件交付。此前的公开直链已下线。
+    </span>
+  </div>
 
   <p class="note">报告里的供应商、邮箱、单号均为虚构示例。本页是纯静态文件，无脚本、无追踪。</p>
 </div>
