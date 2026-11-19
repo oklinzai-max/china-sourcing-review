@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>ChinaSourcing 阶段报告 · 两份订阅资料（图解版）</title>
+<style>
+@page { size: A4; margin: 15mm 15mm 18mm; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: "Microsoft YaHei", "PingFang SC", "Source Han Sans SC", sans-serif;
+  font-size: 9.6pt; line-height: 1.62; color: #24303f; -webkit-print-color-adjust: exact; }
+section { break-before: page; padding-top: 2mm; }
+h2, h3 { break-after: avoid; }
+figure.shot, .callout, .note, table.kv, table { break-inside: avoid; }
+tr, li { break-inside: avoid; }
+p { orphans: 2; widows: 2; }
+section:first-child { break-before: auto; }
+h1, h2, h3 { color: #0b2545; margin: 0; }
+h2 { font-size: 15pt; letter-spacing: -.2pt; }
+h3 { font-size: 10.6pt; margin: 6mm 0 2mm; }
+p { margin: 0 0 2.4mm; }
+.muted { color: #6b7c93; }
+.small { font-size: 8.6pt; line-height: 1.55; }
+.kicker { font-size: 7.6pt; letter-spacing: 1.6pt; text-transform: uppercase; color: #d9541e; font-weight: 700; }
+.sec-head { border-bottom: 1.6pt solid #0b2545; padding-bottom: 2.4mm; margin-bottom: 4mm;
+  display: flex; gap: 5mm; align-items: flex-start; }
+.sec-n { font-size: 20pt; font-weight: 700; color: #d9541e; line-height: 1; min-width: 12mm; }
+.lead { color: #4b5d75; margin-top: 1.2mm; font-size: 9.2pt; }
+
+/* cover */
+.cover { display: flex; flex-direction: column; height: 262mm; }
+.cover-top { border-top: 3pt solid #0b2545; padding-top: 5mm; }
+.cover h1 { font-size: 25pt; line-height: 1.28; margin: 6mm 0 0; letter-spacing: -.5pt; }
+.cover .sub { font-size: 11pt; color: #4b5d75; margin-top: 4mm; line-height: 1.6; }
+.cover .meta { margin-top: auto; border-top: .8pt solid #ccd6e2; padding-top: 3mm; font-size: 8.4pt; color: #6b7c93; }
+.cover .meta b { color: #24303f; }
+.brand { display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm; }
+.mark { width: 9mm; height: 9mm; background: #0b2545; color: #fff; font-weight: 700; font-size: 9pt;
+  display: flex; align-items: center; justify-content: center; border-radius: 1mm; }
+.brand-t { font-weight: 700; color: #0b2545; font-size: 10pt; }
+.brand-s { font-size: 7.4pt; color: #6b7c93; letter-spacing: .6pt; }
+
+/* tables */
+table { border-collapse: collapse; width: 100%; font-size: 8.4pt; }
+th, td { border: .5pt solid #dbe3ec; padding: 1.3mm 1.8mm; text-align: left; vertical-align: top; }
+th { background: #0b2545; color: #fff; font-weight: 700; font-size: 8pt; }
+tbody tr:nth-child(even) td { background: #f7f9fc; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.kv td:first-child { width: 34%; color: #4b5d75; background: #f7f9fc; }
+table.kv tbody tr:nth-child(even) td { background: #fff; }
+table.kv tbody tr:nth-child(even) td:first-child { background: #f7f9fc; }
+
+/* sheet snapshot */
+figure.shot { margin: 3mm 0 5mm; }
+figure.shot figcaption { font-size: 7.8pt; color: #4b5d75; margin-bottom: 1.4mm; }
+.shot-t { font-weight: 700; color: #0b2545; }
+.shot-n { display: block; color: #6b7c93; }
+.shot-wrap { border: .5pt solid #dbe3ec; overflow: hidden; }
+table.grid { font-size: 6.9pt; table-layout: fixed; }
+table.grid th { background: #eef2f8; color: #0b2545; font-size: 6pt; padding: 1mm 1mm; line-height: 1.25; }
+table.grid td { padding: .9mm 1.2mm; white-space: normal; overflow-wrap: anywhere; }
+table.grid tbody tr:nth-child(even) td { background: #fff; }
+table.grid td.hl { background: #fdf1ea; font-weight: 700; color: #b4441a; }
+
+/* blocks */
+.callout { border-left: 2.6pt solid #d9541e; background: #fdf6f2; padding: 2.6mm 3.4mm; margin: 3mm 0; }
+.callout-t { font-weight: 700; color: #b4441a; margin: 0 0 1mm; font-size: 9pt; }
+.callout p { margin: 0; font-size: 8.8pt; color: #4b5d75; }
+.note { border: .6pt solid #dbe3ec; padding: 2.6mm 3.4mm; margin: 3mm 0; background: #f7f9fc; }
+.note p { margin: 0; font-size: 8.6pt; }
+ul, ol { margin: 0 0 2.6mm; padding-left: 5mm; }
+li { margin-bottom: 1.2mm; }
+code { font-family: Consolas, "Courier New", monospace; font-size: 8.2pt; background: #eef2f8;
+  padding: .2mm 1mm; border-radius: .8mm; }
+pre { font-family: Consolas, "Courier New", monospace; font-size: 7.4pt; line-height: 1.5;
+  background: #0b2545; color: #dbe3ec; padding: 3mm 3.4mm; margin: 2.5mm 0; white-space: pre-wrap;
+  border-radius: 1mm; }
+pre b { color: #ffb48a; font-weight: 400; }
+
+/* contents */
+ol.toc { list-style: none; padding: 0; margin: 0; font-size: 9.2pt; }
+ol.toc li { display: flex; align-items: baseline; gap: 2mm; padding: 1.9mm 0; border-bottom: .4pt dotted #ccd6e2; }
+ol.toc .n { color: #d9541e; font-weight: 700; min-width: 9mm; }
+ol.toc .t { flex: 1; }
+ol.toc .p { color: #0b2545; font-weight: 700; font-variant-numeric: tabular-nums; }
+ol.toc .note { display: block; color: #6b7c93; font-size: 7.8pt; border: 0; background: none; padding: 0; margin: 0; }
+</style>
+
+<style id="screen-only">
+  @page { margin: 0; }
+  html, body { background: #fff; }
+  body { max-width: 860px; margin: 0 auto; padding: 36px 24px 80px; font-size: 11pt; }
+  .cover { height: auto; display: block; }
+  .cover .meta { margin-top: 18mm; }
+  section { break-before: auto; padding-top: 0; margin-bottom: 46px; }
+  section + section { border-top: 1px solid #e6ecf3; padding-top: 34px; }
+  figure.shot { break-inside: auto; }
+  figure.pic { margin: 0 0 26px; }
+  figure.pic img { width: 100%; border: 1px solid #dbe3ec; border-radius: 6px; display: block; }
+  figure.pic figcaption { font-size: 12px; color: #6b7c93; margin-top: 8px; line-height: 1.6; }
+</style>
+</head><body>
+
+<section class="cover">
+  <div class="cover-top">
+    <div class="brand"><span class="mark">CS</span>
+      <span><span class="brand-t">ChinaSourcing</span><br><span class="brand-s">FIND IT. SOURCE IT. SHIP IT.</span></span></div>
+    <span class="kicker">Stage 2 · deliverable review pack</span>
+    <h1>两份订阅资料：<br>供应商比价工作簿<br>与中英术语手册</h1>
+    <p class="sub">给外部审查用。报告正文在前，四份资料 PDF 原样附在后面，合并成一个文件，便于一次读完或整份上传。</p>
+  </div>
+  <div class="meta">
+    <b>日期</b> 2026-11-19　<b>报告页数</b> 13　<b>合并本总页数</b> 78　
+    <b>资料文件</b> 4 份　<b>工作簿</b> 35.3 KiB<br>
+    本报告所有数字在生成时从实际文件测得，不接受手填。
+  </div>
+</section>
+
+<section data-section="summary">
+  <header class="sec-head"><span class="sec-n">01</span>
+    <div><h2>一页速览</h2><p class="lead">先看这一页。如果你只想判断"这批东西能不能用"，看完这 8 行就够了。</p></div></header>
+
+  <table class="kv">
+    <tbody>
+      <tr><td>交付了什么</td><td>2 个订阅资料文件：一份供应比价工作簿（<b>35.3 KiB</b>）、一份中英术语手册（<b>1439.3 KiB</b>，<b>25</b> 页）</td></tr>
+      <tr><td>工作簿结构</td><td><b>7</b> 个表、<b>411</b> 个公式格、<b>12</b> 条条件格式规则</td></tr>
+      <tr><td>术语手册内容</td><td><b>7</b> 类、<b>107</b> 个词条、<b>40</b> 个整句</td></tr>
+      <tr><td>验证做了几轮</td><td>三轮：结构检查 61 条（本轮未能复跑）→ 表格引擎 46 条 → 扰动测试 13 项（含在 46 条内）</td></tr>
+      <tr><td>最关键的一条证据</td><td>文件里所有公式格只有公式、<b>没有缓存值</b>；引擎打开后算出的数字与手算一致，改输入后数字会跟着变</td></tr>
+      <tr><td>必须澄清</td><td>验证用的是<b>腾讯文档表格引擎</b>，不是 WPS，也不是 Excel；后两者本机都没验成（原因见第六节）</td></tr>
+      <tr><td>还没解决</td><td>域名未定（canonical/sitemap 仍是 <code>.example</code>）、未部署、没有 Email 系统，所以这两份资料<b>还不能发给订阅者</b></td></tr>
+      <tr><td>下一步依赖</td><td>先把域名和发信通道定下来，再写订阅系统；否则欢迎邮件里的链接只能指向 localhost</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p class="callout-t">这份报告怎么读</p>
+    <p>第二、三节讲东西本身是什么；第四节讲怎么验的、验到了什么程度；第五节把"没做到的部分"单独列出来，不混在结论里；第六节是必须澄清的三件事。附录 A 是合并本里每份资料的起止页，方便直接跳转。</p>
+  </div>
+</section>
+
+<section data-section="toc">
+  <header class="sec-head"><span class="sec-n">02</span>
+    <div><h2>目录</h2><p class="lead">页码指本报告内部；合并本里四份资料的起始页见附录 A。</p></div></header>
+  <ol class="toc">
+    <li><span class="n">01</span><span class="t">一页速览</span><span class="p" data-toc-page="summary"></span></li>
+    <li><span class="n">02</span><span class="t">目录</span><span class="p" data-toc-page="toc"></span></li>
+    <li><span class="n">03</span><span class="t">交付了什么</span><span class="p" data-toc-page="deliver"></span></li>
+    <li><span class="n">04</span><span class="t">工作簿：七个表</span><span class="p" data-toc-page="workbook"></span></li>
+    <li><span class="n">05</span><span class="t">术语手册</span><span class="p" data-toc-page="glossary"></span></li>
+    <li><span class="n">06</span><span class="t">验证：三轮，验到了什么程度</span><span class="p" data-toc-page="verify"></span></li>
+    <li><span class="n">07</span><span class="t">必须澄清的三件事</span><span class="p" data-toc-page="caveat"></span></li>
+    <li><span class="n">08</span><span class="t">还没解决的</span><span class="p" data-toc-page="open"></span></li>
+    <li><span class="n">A</span><span class="t">附录 A：合并本页码索引</span><span class="p" data-toc-page="appendix-a"></span></li>
+    <li><span class="n">B</span><span class="t">附录 B：验证命令与输出原文</span><span class="p" data-toc-page="appendix-b"></span></li>
+  </ol>
+</section>
+
+
+<section data-section="pics">
+  <header class="sec-head"><span class="sec-n">00</span>
+    <div><h2>先看图</h2><p class="lead">下面是工作簿与验证结果的实拍。表格里的数字是从文件里读出来的真实内容，不是示意。</p></div></header>
+  <figure class="pic"><img src="img/05-workbook.png" alt="工作簿的三张表（真实单元格内容）：比价表算落地成本、评分表算加权分、报价表判可比性"><figcaption>工作簿的三张表（真实单元格内容）：比价表算落地成本、评分表算加权分、报价表判可比性</figcaption></figure>
+  <figure class="pic"><img src="img/07-verify.png" alt="验证章节：三轮验证分别验到什么程度，哪一轮现在跑不了"><figcaption>验证章节：三轮验证分别验到什么程度，哪一轮现在跑不了</figcaption></figure>
+</section>
+
+<section data-section="deliver">
+  <header class="sec-head"><span class="sec-n">03</span>
+    <div><h2>交付了什么</h2><p class="lead">两个文件，一份给"比价"，一份给"看懂对方在说什么"。</p></div></header>
+
+  <table>
+    <thead><tr><th>文件</th><th>给谁用</th><th>规模</th><th>放在哪</th></tr></thead>
+    <tbody>
+      <tr><td>供应商比价工作簿<br><code>.xlsx</code></td><td>买家自己填，下载后在本地表格软件里用</td><td>7 表 / 411 公式 / 35.3 KiB</td><td><code>resources/subscriber/</code></td></tr>
+      <tr><td>中英术语手册<br><code>.pdf</code></td><td>看不懂报价单和微信消息时查</td><td>107 词 + 40 句 / 25 页 / 1439.3 KiB</td><td><code>resources/subscriber/</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>为什么放在 resources/ 而不是 public/downloads/</h3>
+  <p>网站上的 <code>public/downloads/</code> 是公开下载目录，任何人拿到网址就能下。这两份东西的设计前提是"用邮箱换资料"，如果丢进公开目录，等于把订阅的门槛直接拆掉，也和首页唯一的邮箱入口自相矛盾。所以它们放在 <code>resources/subscriber/</code>，不进构建产物（<code>dist/</code>），只有确定交付方式之后才挪。</p>
+  <div class="note"><p><b>这条不是技术限制，是产品决定。</b>如果以后决定"订阅资料也免费公开"，把它们移进 <code>public/downloads/</code> 并跑一次 <code>npm run generate:*</code> 即可，页面上的下载区已经在那里了。</p></div>
+
+  <h3>为什么工作簿不是"又一个模板"</h3>
+  <p>市面上搜"supplier comparison template"，出来的多是空表格：一堆列，没有公式，填进去也不会告诉你任何结论。这份东西的差别在于三件事都算出来了：落地成本（把运费和关税摊进单价）、加权评分（八项标准按你自己设的权重合成一个分）、可比性判断（规格、数量、币种、Incoterm 四项不完全一致就明确告诉你"不可比"）。第二个人拿到这张表，不用问填表人就能看出为什么选了 A 没选 B。</p>
+</section>
+
+<section data-section="workbook">
+  <header class="sec-head"><span class="sec-n">04</span>
+    <div><h2>工作簿：七个表</h2><p class="lead">表是按"买家真实的动作顺序"排的：先知道怎么用，再比价，再打分，再核报价，再跟样品，最后记沟通。</p></div></header>
+
+  <table>
+    <thead><tr><th class="num">#</th><th>表名</th><th class="num">行</th><th class="num">列</th><th class="num">公式</th><th class="num">条件格式</th></tr></thead>
+    <tbody><tr><td class="num">1</td><td>Getting Started</td>
+      <td class="num">48</td><td class="num">3</td>
+      <td class="num">—</td><td class="num">—</td></tr><tr><td class="num">2</td><td>Supplier Comparison</td>
+      <td class="num">46</td><td class="num">31</td>
+      <td class="num">84</td><td class="num">3</td></tr><tr><td class="num">3</td><td>Supplier Evaluation</td>
+      <td class="num">46</td><td class="num">12</td>
+      <td class="num">42</td><td class="num">2</td></tr><tr><td class="num">4</td><td>Quotation Comparison</td>
+      <td class="num">46</td><td class="num">17</td>
+      <td class="num">117</td><td class="num">2</td></tr><tr><td class="num">5</td><td>Sample Tracking</td>
+      <td class="num">46</td><td class="num">15</td>
+      <td class="num">84</td><td class="num">3</td></tr><tr><td class="num">6</td><td>Contact Log</td>
+      <td class="num">46</td><td class="num">13</td>
+      <td class="num">84</td><td class="num">2</td></tr><tr><td class="num">7</td><td>Lists</td>
+      <td class="num">15</td><td class="num">12</td>
+      <td class="num">—</td><td class="num">—</td></tr></tbody>
+  </table>
+  <p class="small muted">行/列数为已用区域，公式与条件格式数由表格引擎读回。<code>Getting Started</code> 与 <code>Lists</code> 不含公式：前者是使用说明，后者存放下拉选项。</p>
+
+  <h3>4.1 比价表：落地成本是算出来的</h3>
+  <p>同一件货，A 厂单价 1.85 但要 1000 件起，B 贸易商 2.10 但 300 件就能做。只比单价会选错，因为运费和关税按票收、不按件收，订得少反而摊得更贵。所以落地成本写成：</p>
+  <pre>=IFERROR(IF(OR($M5="",$N5=""),"",$N5+($AB5+$AC5)/$M5),"")</pre>
+  <p class="small">读法：数量（M）或单价（N）任一为空时不计算；否则 = 单价 + （运费 + 关税）÷ 数量。<code>IFERROR</code> 与前置判空是两层保护，任何一格没填都是空白，而不是一屏 <code>#DIV/0!</code> 让整张表看着像坏了。</p>
+  <figure class="shot">
+  <figcaption><span class="shot-t">Supplier Comparison · 前两行真实数据（B/G/L/M/N/T/AB/AC/AD/AE 列）</span><span class="shot-n">AD 与 AE 两个蓝底列是公式算出来的，不是手填的</span></figcaption>
+  <div class="shot-wrap"><table class="grid"><colgroup><col style="width:20.57%"><col style="width:8.00%"><col style="width:8.00%"><col style="width:15.43%"><col style="width:8.00%"><col style="width:8.00%"><col style="width:8.00%"><col style="width:8.00%"><col style="width:8.00%"><col style="width:8.00%"></colgroup><thead><tr><th>Supplier name</th><th>Location</th><th>MOQ</th><th>Quantity quoted</th><th>Unit price</th><th>Incoterms</th><th>Freight to destination (total)</th><th>Duty &amp; taxes (total)</th><th>Landed cost per unit</th><th>Overall score (from Evaluation)</th></tr></thead><tbody><tr><td>[DEMO] Fictional Factory A</td><td>Ningbo</td><td>500 pcs</td><td>1000</td><td>1.85</td><td>FOB</td><td>480</td><td>310</td><td class="hl">2.64</td><td class="hl">4.15</td></tr><tr><td>[DEMO] Fictional Trading Co.</td><td>Yiwu</td><td>300 pcs</td><td>1000</td><td>2.1</td><td>FOB</td><td>260</td><td>350</td><td class="hl">2.71</td><td class="hl">3.1</td></tr></tbody></table></div>
+</figure>
+
+  <h3>4.2 评分表：权重由买家自己定</h3>
+  <p>八项标准（质量、价格、沟通、产能、交期、定制、单证、售后）各打 1–5 分，权重在第 4 行，默认加起来正好 100。改权重，加权分自动重算；权重合计不等于 100 时旁边一格会变色提醒。加权分又被比价表的 AE 列用 <code>INDEX/MATCH</code> 拉过去，所以一处改分、两张表同步。</p>
+  <figure class="shot">
+  <figcaption><span class="shot-t">Supplier Evaluation · 八项评分与加权分（C–J 为评分，K 为公式结果）</span><span class="shot-n">4.15 = (4×15 + 5×20 + 5×15 + 4×15 + 3×10 + 3×10 + 4×5 + 4×10) ÷ 100</span></figcaption>
+  <div class="shot-wrap"><table class="grid"><colgroup><col style="width:11.48%"><col style="width:9.84%"><col style="width:9.84%"><col style="width:9.84%"><col style="width:9.84%"><col style="width:9.84%"><col style="width:9.84%"><col style="width:9.84%"><col style="width:9.84%"><col style="width:9.84%"></colgroup><thead><tr><th>Supplier ID</th><th>Product quality</th><th>Price competitiveness</th><th>Communication</th><th>Production capability</th><th>Delivery reliability</th><th>Customisation capability</th><th>Documentation</th><th>After-sales support</th><th>Weighted score (1–5)</th></tr></thead><tbody><tr><td>[DEMO] SUP-001</td><td>4</td><td>5</td><td>5</td><td>4</td><td>3</td><td>3</td><td>4</td><td>4</td><td class="hl">4.15</td></tr><tr><td>[DEMO] SUP-002</td><td>3</td><td>2</td><td>4</td><td>3</td><td>4</td><td>4</td><td>2</td><td>3</td><td class="hl">3.1</td></tr></tbody></table></div>
+</figure>
+
+  <h3>4.3 报价核对表：先判"能不能比"，再比</h3>
+  <p>两个价格能不能直接比，取决于规格、数量、币种、Incoterm 是否一致。表头先设一组"参考报价"，下面每行与它逐项比对，四项全同才显示 <code>Comparable</code>，否则明确写出"不可比——请检查规格、数量、币种或 Incoterm"。这一列的意义是拦住那种"看着便宜其实不是同一件东西"的错判。</p>
+  <figure class="shot">
+  <figcaption><span class="shot-t">Quotation Comparison · 可比性判断（P 列由公式比对规格 / 数量 / 币种 / Incoterm 四项得出）</span><span class="shot-n">第二行规格 250 gsm、数量 500，与参考报价不一致，因此判为不可比；单元格原文为“Not comparable — check specification, quantity, currency or Incoterm”</span></figcaption>
+  <div class="shot-wrap"><table class="grid"><colgroup><col style="width:12.50%"><col style="width:18.18%"><col style="width:9.09%"><col style="width:9.09%"><col style="width:9.09%"><col style="width:11.36%"><col style="width:12.50%"><col style="width:18.18%"></colgroup><thead><tr><th>Quote ID</th><th>Product specification</th><th>Quantity</th><th>Currency</th><th>Incoterm</th><th>Unit price</th><th>Goods value</th><th>Comparable?</th></tr></thead><tbody><tr><td>[DEMO] Q-01</td><td>Cotton tote bag 38×42 cm, 280 gsm</td><td>1000</td><td>USD</td><td>FOB</td><td>1.85</td><td>1850</td><td class="hl">Comparable</td></tr><tr><td>[DEMO] Q-02</td><td>Cotton tote bag 38×42 cm, 250 gsm</td><td>500</td><td>USD</td><td>FOB</td><td>2.1</td><td>1050</td><td class="hl">Not comparable</td></tr></tbody></table></div>
+</figure>
+
+  <div class="callout">
+    <p class="callout-t">演示行不是真实数据</p>
+    <p>每个表的前两行标着 <code>[DEMO]</code>，是虚构的示例（供应商名、邮箱、单号都是编的），打开就能看到表怎么用。交付给订阅者前会删掉——但现在保留着，因为空表看不出版式。示例行里也写明"删除后使用"。</p>
+  </div>
+</section>
+
+<section data-section="glossary">
+  <header class="sec-head"><span class="sec-n">05</span>
+    <div><h2>术语手册</h2><p class="lead">7 类共 107 个词条，另有 40 个整句，25 页 A4。</p></div></header>
+
+  <p>目的不是教中文，是让不读中文的买家<b>在报价单、微信消息、工厂会议上认出那个词</b>，并且知道它牵扯到钱还是牵扯到责任。每个词条四列：英文、中文原文、白话解释、以及一句中文备注（方便对方确认）。Incoterms 按"风险在哪里转移"描述，并注明依据 ICC Incoterms 2020，不写成法律条文。</p>
+
+  <h3>分类</h3>
+  <table>
+    <thead><tr><th>#</th><th>类别</th><th>解决什么场景</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>供应商类型</td><td>工厂、贸易商、代理分别意味着什么，怎么问出来</td></tr>
+      <tr><td class="num">2</td><td>价格与订单</td><td>MOQ、阶梯价、含税不含税、打样费</td></tr>
+      <tr><td class="num">3</td><td>产品质量</td><td>验货、AQL、认证与检测报告的区别</td></tr>
+      <tr><td class="num">4</td><td>运输与物流</td><td>整柜拼柜、体积重、起运港目的港</td></tr>
+      <tr><td class="num">5</td><td>贸易条款</td><td>Incoterms 各条的风险转移点</td></tr>
+      <tr><td class="num">6</td><td>付款与谈判</td><td>定金比例、见提单副本、账期</td></tr>
+      <tr><td class="num">7</td><td>工厂拜访</td><td>约厂、进门、看线、要资料</td></tr>
+      <tr><td class="num">8</td><td>整句</td><td>40 句可以直接发给对方的说法</td></tr>
+    </tbody>
+  </table>
+
+  <h3>真实词条示例（摘自"价格与订单"一节）</h3>
+  <table>
+    <thead><tr><th>English</th><th>中文</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>MOQ</td><td>起订量 / 最小起订量</td><td class="small">Minimum order quantity — the smallest number the supplier will produce. Usually quoted per model and per colour, which can be two different figures. e.g. &quot;What is the MOQ per colour?&quot;</td></tr><tr><td>Unit price</td><td>单价</td><td class="small">Price for one piece. Meaningless without the quantity, currency, Incoterm and specification it applies to. e.g. &quot;What is the unit price at 5,000 pieces, FOB Ningbo?&quot;</td></tr><tr><td>Wholesale price</td><td>批发价</td><td class="small">Price for buyers who resell, usually in stock and in smaller lots than a factory order. e.g. &quot;Is this the wholesale price for one carton?&quot;</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">整本手册原文见合并本最后 25 页（附录 A 有起始页）。</p>
+</section>
+
+<section data-section="verify">
+  <header class="sec-head"><span class="sec-n">06</span>
+    <div><h2>验证：三轮，验到了什么程度</h2><p class="lead">"生成了文件"和"文件能用"是两件事。这里把三轮验证分开写，包括哪一轮现在跑不了。</p></div></header>
+
+  <h3>6.1 第一轮：结构检查（61 条，本轮未能复跑）</h3>
+  <p>生成时用 openpyxl 逐项核对：7 个表顺序、每表的冻结窗格/筛选/下拉/条件格式/<code>[DEMO]</code> 标记、空白模板没有预填、411 个公式存在、用第三方公式引擎 <code>formulas</code> 实算并与预期比对、PDF 的目录页码与实际页一致。</p>
+  <p><b>本轮跑不了</b>：这台机器的 Python 环境被重置过，<code>openpyxl</code> / <code>formulas</code> / <code>pypdf</code> 都没了，而当前沙箱访问不了 PyPI（<code>from versions: none</code>），装不回来。但交付的工作簿字节没变（SHA-256 前缀 <code>c1ee179b</code>，git 里也无改动），所以仍是当初跑出 61/61 的那一份，那条结论继续成立。补装命令：<code>python -m pip install openpyxl formulas pypdf</code>。</p>
+
+  <h3>6.2 第二轮：真实表格引擎（46 条，全过）</h3>
+  <p>用 WorkBuddy 预览面板背后的表格引擎把文件真实打开，读回它算出来的值。这一轮能成立的前提是先证明"文件里没有缓存值"——openpyxl 写的公式格只有 <code>&lt;f&gt;</code> 和空的 <code>&lt;v&gt;&lt;/v&gt;</code>，所以引擎返回的每个数字都只能是它自己算的。</p>
+  <table>
+    <thead><tr><th>检查项</th><th>结果</th></tr></thead>
+    <tbody>
+      <tr><td>公式格数量</td><td>411 个，逐表：Supplier Comparison 84、Supplier Evaluation 42、Quotation Comparison 117、Sample Tracking 84、Contact Log 84</td></tr>
+      <tr><td>计算出错</td><td>0 个（没有 #NAME? / #VALUE! / #DIV/0! / #REF!）</td></tr>
+      <tr><td>空白行表现</td><td>393 个空格子返回空字符串，而不是报错</td></tr>
+      <tr><td>关键值与手算</td><td>落地成本 2.64 / 2.71、加权分 4.15 / 3.10、货值 1850 / 1050、样品摊销 0.025 / 0.06、在途 6 天、距今 9 天与 7 天——全部一致</td></tr>
+      <tr><td>跨表引用</td><td><code>INDEX/MATCH</code> 从评分表拉到比价表，数值同步</td></tr>
+      <tr><td>易失函数</td><td><code>TODAY()</code> 正常，逾期判断随日期变化</td></tr>
+      <tr><td>格式保留</td><td><code>#,##0.00</code> / <code>#,##0.000</code> / <code>yyyy-mm-dd</code>；每表 3 行横幅仍是跨 31 列合并</td></tr>
+      <tr><td>条件格式</td><td>读回 12 条规则，分布在 8 个区域（3+2+2+3+2）。按区域数是 8、按规则数是 12，两种说法不矛盾</td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.3 第三轮：扰动测试（13 项，全过）</h3>
+  <p>前两轮只能证明"打开是好的"，这一轮证明"表是活的"：改一个输入，看依赖它的格子会不会跟着变。在临时副本上做，改完不保存。</p>
+  <table>
+    <thead><tr><th>动什么</th><th>期望</th><th class="num">实际</th></tr></thead>
+    <tbody>
+      <tr><td>基线读数</td><td class="small">AD5 = 2.64</td><td class="num">2.64</td></tr><tr><td>数量 1000 → 500</td><td class="small">运费/关税摊到更少单位，AD5 = 1.85 + 790 ÷ 500</td><td class="num">3.43</td></tr><tr><td>运费 480 → 980</td><td class="small">AD5 = 1.85 + 1290 ÷ 500</td><td class="num">4.43</td></tr><tr><td>清空数量</td><td class="small">应显示空白，而不是 #DIV/0!</td><td class="num">空白</td></tr><tr><td>还原输入</td><td class="small">AD5 回到 2.64</td><td class="num">2.64</td></tr><tr><td>某项评分 4 → 5</td><td class="small">Evaluation K6 加权分 = 4.30</td><td class="num">4.30</td></tr><tr><td>同上，看跨表</td><td class="small">Supplier Comparison 的 AE5 跟着变成 4.30</td><td class="num">4.30</td></tr><tr><td>Incoterm FOB → EXW</td><td class="small">P8 判为不可比</td><td class="num">Not comparable</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">另有 5 项断言用于确认"没被测试改坏"：还原输入后回到基线、表头说明文字未被覆盖、表头单元格仍是原文。</p>
+
+  <div class="callout">
+    <p class="callout-t">已经修掉的两个真错误</p>
+    <p>一是落地成本公式读错列（写成"备注+运费"，应为"运费+关税"），重算得到空值才暴露；二是演示日期存成了文本，导致所有日期相减返回空白，看起来像公式坏了。两个都是"文件能打开、但结果是错的"，只有实算才抓得到。</p>
+  </div>
+</section>
+
+<section data-section="caveat">
+  <header class="sec-head"><span class="sec-n">07</span>
+    <div><h2>必须澄清的三件事</h2><p class="lead">这三条都会影响你怎么看待上面的结论，所以单独列出来，不放在脚注里。</p></div></header>
+
+  <h3>一、验它用的是腾讯文档表格引擎，不是 WPS，也不是 Excel</h3>
+  <p>驱动它的是 <code>@tencent/tencent-docs-ai-engine</code> 的 <code>editor_sdk.exe</code>，也就是这个应用预览面板背后的引擎。之所以能得出"公式是活的"这个结论，靠的是三条与引擎归属无关的证据：文件里没有缓存值、引擎算出的数等于手算、改输入数字会变。但"能在 WPS 里打开""能在 Excel 里打开"这两句话，<b>不能用这次结果代替</b>。</p>
+
+  <h3>二、想直接用 WPS 验，被沙箱挡住了</h3>
+  <p>本机确实装着 WPS（<code>D:\下载\WPS Office\12.1.0.29690</code>，进程在跑）。程序化驱动它的唯一方式是 COM（<code>Ket.Application</code>），而沙箱安全策略直接拦截了 COM 实例化：<code>COM object instantiation can run arbitrary code</code>。按规则不能绕过，所以这一环改由人工确认——把 <code>M5</code> 的数量从 1000 改成 500，<code>AD5</code> 应从 2.64 变成 3.43，会变就说明表在 WPS 里是活的。</p>
+
+  <h3>三、没有 Microsoft Excel，也没有在 Excel 里打开过</h3>
+  <p>公式只用了 <code>IFERROR</code> / <code>SUMPRODUCT</code> / <code>INDEX</code> / <code>MATCH</code> / <code>COUNTA</code> / <code>TODAY</code> / <code>SUM</code>，都是 Excel 2007 起就有的函数，没有动态数组、没有 <code>LAMBDA</code>、没有 VBA、没有宏、没有 Power Query。理论上无兼容风险，但"我在 Excel 里打开过"这句话，现在不能说。</p>
+</section>
+
+<section data-section="open">
+  <header class="sec-head"><span class="sec-n">08</span>
+    <div><h2>还没解决的</h2><p class="lead">分成两类：真正卡住上线的，和不影响使用但该做的。</p></div></header>
+
+  <h3>卡住上线的</h3>
+  <table>
+    <thead><tr><th>问题</th><th>为什么卡</th><th>需要你做什么</th></tr></thead>
+    <tbody>
+      <tr><td>域名未定</td><td><code>canonical</code>、<code>sitemap</code>、<code>og:url</code> 仍是 <code>.example</code>；订阅欢迎邮件里的链接只能指向 localhost</td><td>决定域名并授权我改 <code>src/config/site.ts</code></td></tr>
+      <tr><td>没有发信通道</td><td>没有 SMTP / 事务邮件服务，订阅确认信发不出去，两份资料没法交付</td><td>选一家服务并授权接入（或先用表单收集，手动发）</td></tr>
+      <tr><td>未部署</td><td>所有验证都在本机；线上 404、缓存、下载行为都没验过</td><td>域名定后部署一次，再跑线上检查</td></tr>
+    </tbody>
+  </table>
+
+  <h3>不影响使用、但该做的</h3>
+  <ul>
+    <li>在 WPS 和 Excel 里各打开一次（第七节第一条、第三条）。</li>
+    <li>两份资料的交付方式没定：要么做带令牌的下载链接，要么接受"网址靠猜不到"这种弱保护。前者要写代码，后者不体面但零成本。</li>
+    <li>术语手册 25 页里有 3 页是半页（表格按行切块导致），能压到 22 页左右，但前两次尝试都引入了跨页断行问题，暂时接受。</li>
+    <li>Python 依赖要补装，否则 <code>check:subscriber</code> 与 <code>generate:xlsx</code> 都跑不了。</li>
+  </ul>
+</section>
+
+<section data-section="appendix-a">
+  <header class="sec-head"><span class="sec-n">A</span>
+    <div><h2>附录 A：合并本页码索引</h2><p class="lead">本报告后面的内容是四份资料 PDF 原文，未做任何改动。</p></div></header>
+  <table>
+    <thead><tr><th>部分</th><th class="num">页码</th><th class="num">页数</th></tr></thead>
+    <tbody><tr><td>本报告（阶段报告正文）</td><td class="num">P1–P13</td><td class="num">13</td></tr><tr><td>Canton Fair 基础清单</td><td class="num">P14–P26</td><td class="num">13</td></tr><tr><td>义乌市场基础指南</td><td class="num">P27–P38</td><td class="num">12</td></tr><tr><td>出行准备清单</td><td class="num">P39–P53</td><td class="num">15</td></tr><tr><td>中英术语手册（订阅资料）</td><td class="num">P54–P78</td><td class="num">25</td></tr></tbody>
+  </table>
+  <div class="note"><p>合并只做页面拼接，不改内容、不重排版，所以每份资料内部的目录页码仍然指向它自己那份文档的页码，而不是合并本的页码。对照关系看上面这张表。</p></div>
+</section>
+
+<section data-section="appendix-b">
+  <header class="sec-head"><span class="sec-n">B</span>
+    <div><h2>附录 B：验证命令与输出原文</h2><p class="lead">可复跑。输出是 2026-11-19 那次运行的原样摘录。</p></div></header>
+
+  <h3>结构检查（本轮未能复跑）</h3>
+  <pre>npm run check:subscriber
+<b>61/61 checks passed</b></pre>
+
+  <h3>表格引擎验证</h3>
+  <pre>npm run check:engine
+delivered file sha256 = c1ee179ba547fab0…
+reading the delivered workbook through its already-open instance (no copy made)
+[1] structure       7 sheets, names and order match
+[2] 411 formula cells, 0 error values
+[3] 18 computed values match arithmetic done in plain Python
+[4] number formats, merged banners, 12 conditional-format rules
+[5] perturbation: inputs move the outputs
+<b>46/46 sheet-engine assertions passed</b>
+delivered file byte-identical before and after: yes</pre>
+
+  <h3>网站与下载</h3>
+  <pre>npm run check:launch
+<b>73/73 checks passed</b>   （45 页路由 / 溢出 / 下载完整性 / robots / sitemap / SEO）</pre>
+
+  <p class="small muted">本报告由 <code>scripts/report/build-pack.mjs</code> 生成：先读工作簿真实单元格与各文件实际页数，再排版、打印、合并。报告里的数字不可手改，只能重跑。</p>
+</section>
+
+</body></html>
