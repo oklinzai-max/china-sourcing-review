@@ -66,9 +66,10 @@
   <h1>ChinaSourcing 第三阶段：Email 订阅与自动资料交付</h1>
   <p class="lead">交付报告 · 供外部审查</p>
   <p class="meta">
-    生成时的 HEAD：<code>c09dc50</code>（本页自身在之后单独提交） ·
-    本地模拟测试 16/16（2026/11/19 19:22:52） ·
-    全站回归 73/73（2026/11/19 19:27:48）
+    生成时的 HEAD：<code>b1bb52e</code>（本页自身在之后单独提交） ·
+    本地模拟 16/16（2026/11/20 13:38:41） ·
+    上线前检查 27/27（2026/11/20 13:38:34） ·
+    全站回归 73/73（2026/11/20 13:38:48）
   </p>
 
   <div class="summary">
@@ -78,7 +79,7 @@
       <dt>服务商</dt><dd>Brevo（原首选 MailerLite 因免费版不能自定义确认邮件而更换，对比见第三节）</dd>
       <dt>技术形态</dt><dd>纯静态站 + 服务商官方托管表单；站内不发请求、不存在任何 API Key</dd>
       <dt>真实邮件测试</dt><dd class="bad">未做</dd>
-      <dt>本站改动</dt><dd>3 个页面/组件 + 配置文件，导航、URL、首页布局顺序均未变</dd>
+      <dt>本站改动</dt><dd>4 个页面/组件 + 2 个新页面 + 配置文件；导航结构、URL、首页布局顺序均未变</dd>
     </dl>
   </div>
 
@@ -94,14 +95,17 @@
       <tbody><tr><td>前置检查、Git 检查点</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">已实际执行，结果见下</td></tr>
 <tr><td>订阅组件两态改造</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">16/16 项本地模拟通过</td></tr>
 <tr><td>首页 / 资料页 / 工具页三个入口</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">截图与 DOM 检查均确认</td></tr>
-<tr><td>全站回归</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">73/73 项通过，44 个页面全部 200</td></tr>
+<tr><td>全站回归</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">73/73 项通过，46 个页面全部 200</td></tr>
 <tr><td>两封邮件文案（全稿）</td><td><span class="badge" style="color:#8a5a00;background:#fdf8ec">已完成 · 未验证</span></td><td class="mut">已写好，尚未在服务商后台配置</td></tr>
 <tr><td>Brevo 接入指南、DNS 记录清单</td><td><span class="badge" style="color:#8a5a00;background:#fdf8ec">已完成 · 未验证</span></td><td class="mut">已写好，尚未执行</td></tr>
 <tr><td>Brevo 账户与托管表单</td><td><span class="badge" style="color:#9c3d10;background:#fdf2ec">等待授权</span></td><td class="mut">需要你注册并创建</td></tr>
 <tr><td>正式域名</td><td><span class="badge" style="color:#9c3d10;background:#fdf2ec">等待授权</span></td><td class="mut">仍是 chinasourcing.example 占位</td></tr>
 <tr><td>Double Opt-in 实际开启</td><td><span class="badge" style="color:#9c3d10;background:#fdf2ec">等待授权</span></td><td class="mut">需要账户内操作</td></tr>
 <tr><td>真实投递测试（9 项）</td><td><span class="badge" style="color:#6b7c93;background:#f2f5f9">尚未开发</span></td><td class="mut">未做，无账户无法做</td></tr>
-<tr><td>隐私政策更新</td><td><span class="badge" style="color:#6b7c93;background:#f2f5f9">尚未开发</span></td><td class="mut">刻意未改：现有文案此刻仍然成立</td></tr></tbody>
+<tr><td>隐私政策（待上线稿）</td><td><span class="badge" style="color:#8a5a00;background:#fdf8ec">已完成 · 未验证</span></td><td class="mut">修订稿已就绪：开关一开即生效，现在仍说"未连接"</td></tr>
+<tr><td>两份资料公开直链</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">已从公开仓库删除，三个 URL 均 404（2026-11-20）</td></tr>
+<tr><td>订阅成功页 /subscription-confirmed/</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">页面 7 项 + 不误判已订阅 4 项，全部通过</td></tr>
+<tr><td>Buyer Community 入口</td><td><span class="badge" style="color:#1f7a4d;background:#f0f8f3">已完成 · 已验证</span></td><td class="mut">四方向 + Coming soon，无邀请链接，未改一级导航</td></tr></tbody>
     </table>
   </section>
 
@@ -112,7 +116,7 @@
       <tbody>
         <tr><td>分支 / 工作区</td><td><code>master</code>，工作区干净（无未提交修改）</td></tr>
         <tr><td>检查点</td><td>已打标签 <code>checkpoint-before-stage3</code> → <code>0149ab1</code>；本阶段任何改动都可整段回退</td></tr>
-        <tr><td>技术栈</td><td>Astro 5.18.2 + Tailwind 4.1.14，静态构建，<code>dist/</code> 已忽略；构建产出 44 个页面</td></tr>
+        <tr><td>技术栈</td><td>Astro 5.18.2 + Tailwind 4.1.14，静态构建，<code>dist/</code> 已忽略；构建产出 46 个页面</td></tr>
         <tr><td>第二阶段结论</td><td>v1.1 工作簿已验收：原件与备份逐字节未改，交付版 37.3 KiB</td></tr>
         <tr><td>原有订阅组件</td><td>存在，但<b>只做前端校验、不发任何请求</b>，提交后明说"未连接邮件服务"——没有伪造成功态，因此可以直接沿用</td></tr>
         <tr><td>原有入口位置</td><td>仅工具页一处，不是每页弹窗</td></tr>
@@ -148,6 +152,11 @@
 <tr><td class="mono">src/components/NewsletterForm.astro</td><td>重写为两态组件：未配置 / 已配置</td><td class="c mut">改</td></tr>
 <tr><td class="mono">src/pages/index.astro</td><td>首页加入订阅区块（Free Tools 与 Trust 之间）</td><td class="c mut">改</td></tr>
 <tr><td class="mono">src/pages/free-resources.astro</td><td>加入订阅区块；修正"资料尚未提供"的过时文案</td><td class="c mut">改</td></tr>
+<tr><td class="mono">src/pages/subscription-confirmed.astro</td><td>新增：订阅确认后的落地页（noindex，不伪造状态）</td><td class="c mut">新增</td></tr>
+<tr><td class="mono">src/pages/community.astro</td><td>新增：Buyer Community 入口，四方向 Coming soon</td><td class="c mut">新增</td></tr>
+<tr><td class="mono">src/config/site.ts</td><td>页脚加入 Buyer Community 入口（未动一级导航）</td><td class="c mut">改</td></tr>
+<tr><td class="mono">scripts/qa-stage3-final.mjs</td><td>新增：上线前 27 项检查</td><td class="c mut">新增</td></tr>
+<tr><td class="mono">scripts/report/unpublish-resources.py</td><td>新增：从公开仓库删除三份资料副本并验证 404</td><td class="c mut">新增</td></tr>
 <tr><td class="mono">scripts/qa-newsletter.mjs</td><td>新增：16 项本地模拟测试</td><td class="c mut">新增</td></tr>
 <tr><td class="mono">scripts/report/stage3-shots.mjs</td><td>新增：截图脚本（本文四张图由它生成）</td><td class="c mut">新增</td></tr>
 <tr><td class="mono">scripts/report/build-stage3-report.mjs</td><td>新增：本页的生成脚本</td><td class="c mut">新增</td></tr>
@@ -252,7 +261,8 @@ ChinaSourcing — Find it. Source it. Ship it.</div>
       <ol style="margin-bottom:0">
         <li><b>这不是会员鉴权。</b>没有登录、没有身份校验、没有限时签名链接。邮件里的下载地址一旦被转发，拿到的人就能下载。</li>
         <li><b>因此不会把它称作"安全私密链接"。</b>准确说法是"通过邮件发送的下载地址"。</li>
-        <li><b>而且目前这两份文件仍有公网直链</b>——早前为让审查方读取，放到了 GitHub Pages 上（<code>supplier-comparison-spreadsheet.xlsx</code>、<code>common-chinese-english-sourcing-terms.pdf</code>）。它们没有被站点引用，但任何人拿到地址都能下载，可能被搜索引擎收录。<b>就这两份文件而言，当前保护强度为零。</b></li>
+        <li><b>公开直链已于 2026-11-20 撤下。</b>早前为让审查方读取，两份文件被放到 GitHub Pages；现在三份副本（<code>supplier-comparison-spreadsheet.xlsx</code>、<code>supplier-comparison-spreadsheet-v1.0.xlsx</code>、<code>common-chinese-english-sourcing-terms.pdf</code>）已从公开仓库删除，三个 URL 实测均返回 404。内部原件与备份逐字节保留，见 <code>resources/subscriber/published-copies-MANIFEST.json</code>。</li>
+        <li><b>但还不能说"已经受保护"。</b>删除的是公开副本，交付靠邮件附件；邮件附件本身可被转发。要真正的访问控制（限时签名链接、会员会话），仍需后端或付费功能，本阶段没有做，也没有声称做了。</li>
       </ol>
     </div>
     <p>要做到真正的"只有订阅者能下载"，需要其中一种：服务商侧的门禁（部分平台付费版才有）、带时效签名的对象存储链接、或一个能校验会话的后端。这三样都要么花钱要么加后端，按你的要求只报告、不擅自实施。</p>
@@ -374,7 +384,7 @@ ChinaSourcing — Find it. Source it. Ship it.</div>
       <td class="c ok">通过</td>
     </tr></tbody>
     </table>
-    <p class="note"><b>16/16 通过</b>（2026/11/19 19:22:52）。这些检查只能证明：表单不会误报成功、空值与未勾选会被拦住、提示文案与事实一致、三个入口都在、手机端不溢出。<b>它们与真实邮件投递无关。</b></p>
+    <p class="note"><b>16/16 通过</b>（2026/11/20 13:38:41）。这些检查只能证明：表单不会误报成功、空值与未勾选会被拦住、提示文案与事实一致、三个入口都在、手机端不溢出。<b>它们与真实邮件投递无关。</b></p>
 
     <h3>B. 真实投递（未执行）</h3>
     <p class="small mut">需要 Brevo 账户 + 域名认证后逐项做。这里列出将来要做的九项，避免届时漏测：</p>
@@ -392,7 +402,7 @@ ChinaSourcing — Find it. Source it. Ship it.</div>
     </table>
 
     <h3>C. 回归</h3>
-    <p>全站自动化验收 <b>73/73</b> 通过（2026/11/19 19:27:48）：44 个页面状态码、导航菜单、计算器、行程规划器、8 个下载文件、robots 与 sitemap、SEO 标题长度。<b>本阶段没有破坏既有页面。</b></p>
+    <p>全站自动化验收 <b>73/73</b> 通过（2026/11/20 13:38:48）：46 个页面状态码、导航菜单、计算器、行程规划器、8 个下载文件、robots 与 sitemap、SEO 标题长度。<b>本阶段没有破坏既有页面。</b></p>
   </section>
 
   <section>
@@ -420,12 +430,12 @@ ChinaSourcing — Find it. Source it. Ship it.</div>
     <h2>十二、Git 记录与回滚</h2>
     <table>
       <thead><tr><th style="width:90px">提交</th><th>说明</th></tr></thead>
-      <tbody><tr><td class="mono">c09dc50</td><td>feat(stage3): subscription block wired for a hosted provider form</td></tr>
+      <tbody><tr><td class="mono">b1bb52e</td><td>docs(stage3): review page at stage3.html, generated from the test runs</td></tr>
+<tr><td class="mono">c09dc50</td><td>feat(stage3): subscription block wired for a hosted provider form</td></tr>
 <tr><td class="mono">b727968</td><td>docs(stage3): pre-flight check and provider comparison</td></tr>
 <tr><td class="mono">0149ab1</td><td>feat(workbook): v1.1 revision of the subscriber spreadsheet</td></tr>
 <tr><td class="mono">1428e9f</td><td>add a web version of the workbook for readers that cannot open xlsx</td></tr>
-<tr><td class="mono">0e69b48</td><td>publish the two subscriber resources with their own links</td></tr>
-<tr><td class="mono">cf4a65c</td><td>docs: publish the report to GitHub Pages and record the proxy trap</td></tr></tbody>
+<tr><td class="mono">0e69b48</td><td>publish the two subscriber resources with their own links</td></tr></tbody>
     </table>
     <p class="small mut">检查点 <code>checkpoint-before-stage3</code> 指向 <code>0149ab1</code>，即本阶段开工前的状态。</p>
     <h3>只回滚本阶段的改动</h3>
