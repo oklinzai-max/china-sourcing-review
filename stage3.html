@@ -66,10 +66,10 @@
   <h1>ChinaSourcing 第三阶段：Email 订阅与自动资料交付</h1>
   <p class="lead">交付报告 · 供外部审查</p>
   <p class="meta">
-    生成时的 HEAD：<code>b1bb52e</code>（本页自身在之后单独提交） ·
-    本地模拟 16/16（2026/11/20 13:38:41） ·
-    上线前检查 27/27（2026/11/20 13:38:34） ·
-    全站回归 73/73（2026/11/20 13:38:48）
+    生成时的 HEAD：<code>02ae71a</code>（本页自身在之后单独提交） ·
+    本地模拟 16/16（2026/11/20 13:42:46） ·
+    上线前检查 27/27（2026/11/20 13:42:39） ·
+    全站回归 73/73（2026/11/20 13:42:53）
   </p>
 
   <div class="summary">
@@ -384,7 +384,7 @@ ChinaSourcing — Find it. Source it. Ship it.</div>
       <td class="c ok">通过</td>
     </tr></tbody>
     </table>
-    <p class="note"><b>16/16 通过</b>（2026/11/20 13:38:41）。这些检查只能证明：表单不会误报成功、空值与未勾选会被拦住、提示文案与事实一致、三个入口都在、手机端不溢出。<b>它们与真实邮件投递无关。</b></p>
+    <p class="note"><b>16/16 通过</b>（2026/11/20 13:42:46）。这些检查只能证明：表单不会误报成功、空值与未勾选会被拦住、提示文案与事实一致、三个入口都在、手机端不溢出。<b>它们与真实邮件投递无关。</b></p>
 
     <h3>B. 真实投递（未执行）</h3>
     <p class="small mut">需要 Brevo 账户 + 域名认证后逐项做。这里列出将来要做的九项，避免届时漏测：</p>
@@ -402,7 +402,7 @@ ChinaSourcing — Find it. Source it. Ship it.</div>
     </table>
 
     <h3>C. 回归</h3>
-    <p>全站自动化验收 <b>73/73</b> 通过（2026/11/20 13:38:48）：46 个页面状态码、导航菜单、计算器、行程规划器、8 个下载文件、robots 与 sitemap、SEO 标题长度。<b>本阶段没有破坏既有页面。</b></p>
+    <p>全站自动化验收 <b>73/73</b> 通过（2026/11/20 13:42:53）：46 个页面状态码、导航菜单、计算器、行程规划器、8 个下载文件、robots 与 sitemap、SEO 标题长度。<b>本阶段没有破坏既有页面。</b></p>
   </section>
 
   <section>
@@ -430,12 +430,12 @@ ChinaSourcing — Find it. Source it. Ship it.</div>
     <h2>十二、Git 记录与回滚</h2>
     <table>
       <thead><tr><th style="width:90px">提交</th><th>说明</th></tr></thead>
-      <tbody><tr><td class="mono">b1bb52e</td><td>docs(stage3): review page at stage3.html, generated from the test runs</td></tr>
+      <tbody><tr><td class="mono">02ae71a</td><td>feat(stage3): take the subscriber files off public hosting and add the go-live pages</td></tr>
+<tr><td class="mono">b1bb52e</td><td>docs(stage3): review page at stage3.html, generated from the test runs</td></tr>
 <tr><td class="mono">c09dc50</td><td>feat(stage3): subscription block wired for a hosted provider form</td></tr>
 <tr><td class="mono">b727968</td><td>docs(stage3): pre-flight check and provider comparison</td></tr>
 <tr><td class="mono">0149ab1</td><td>feat(workbook): v1.1 revision of the subscriber spreadsheet</td></tr>
-<tr><td class="mono">1428e9f</td><td>add a web version of the workbook for readers that cannot open xlsx</td></tr>
-<tr><td class="mono">0e69b48</td><td>publish the two subscriber resources with their own links</td></tr></tbody>
+<tr><td class="mono">1428e9f</td><td>add a web version of the workbook for readers that cannot open xlsx</td></tr></tbody>
     </table>
     <p class="small mut">检查点 <code>checkpoint-before-stage3</code> 指向 <code>0149ab1</code>，即本阶段开工前的状态。</p>
     <h3>只回滚本阶段的改动</h3>
