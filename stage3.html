@@ -66,7 +66,7 @@
   <h1>ChinaSourcing 第三阶段：Email 订阅与自动资料交付</h1>
   <p class="lead">交付报告 · 供外部审查</p>
   <p class="meta">
-    生成时的 HEAD：<code>02ae71a</code>（本页自身在之后单独提交） ·
+    生成时的 HEAD：<code>b96196c</code>（本页自身在之后单独提交） ·
     本地模拟 16/16（2026/11/20 15:05:35） ·
     上线前检查 27/27（2026/11/20 15:05:47） ·
     全站回归 71/71（2026/11/20 15:05:21）
@@ -430,12 +430,12 @@ ChinaSourcing — Find it. Source it. Ship it.</div>
     <h2>十二、Git 记录与回滚</h2>
     <table>
       <thead><tr><th style="width:90px">提交</th><th>说明</th></tr></thead>
-      <tbody><tr><td class="mono">02ae71a</td><td>feat(stage3): take the subscriber files off public hosting and add the go-live pages</td></tr>
+      <tbody><tr><td class="mono">b96196c</td><td>feat: pack without the glossary, and withdraw the two legacy xlsx templates</td></tr>
+<tr><td class="mono">02ae71a</td><td>feat(stage3): take the subscriber files off public hosting and add the go-live pages</td></tr>
 <tr><td class="mono">b1bb52e</td><td>docs(stage3): review page at stage3.html, generated from the test runs</td></tr>
 <tr><td class="mono">c09dc50</td><td>feat(stage3): subscription block wired for a hosted provider form</td></tr>
 <tr><td class="mono">b727968</td><td>docs(stage3): pre-flight check and provider comparison</td></tr>
-<tr><td class="mono">0149ab1</td><td>feat(workbook): v1.1 revision of the subscriber spreadsheet</td></tr>
-<tr><td class="mono">1428e9f</td><td>add a web version of the workbook for readers that cannot open xlsx</td></tr></tbody>
+<tr><td class="mono">0149ab1</td><td>feat(workbook): v1.1 revision of the subscriber spreadsheet</td></tr></tbody>
     </table>
     <p class="small mut">检查点 <code>checkpoint-before-stage3</code> 指向 <code>0149ab1</code>，即本阶段开工前的状态。</p>
     <h3>只回滚本阶段的改动</h3>
@@ -454,7 +454,7 @@ ChinaSourcing — Find it. Source it. Ship it.</div>
     <ol>
       <li><b>托管表单算不算"真实可用的订阅系统"？</b>本站只把人送到 Brevo 的表单页，站内不承接提交。这样做合规、无密钥风险，但转化路径多一跳，且站点无法回显"已订阅"状态。</li>
       <li><b>确认邮件与欢迎邮件分两封，是否多余？</b>Brevo 的 DOI 确认信已经是第一封，欢迎信是第二封。对海外买家而言这是标准做法，但确实多一次打开。</li>
-      <li><b>资料直链要不要撤？</b>撤掉后审查方需要另找入口（可改用网页版 <code>workbook.html</code>），但订阅门槛才真正成立。</li>
+      <li><b>撤下内容页是否影响审查？</b>直链与逐格内容页都已撤下（2026-11-21），审查改用本页与 <code>v11.html</code> 的公式对照。如果还需要逐格核对，我可以生成一份仅供本次审查的临时页面，审完即删。</li>
     </ol>
   </section>
 
